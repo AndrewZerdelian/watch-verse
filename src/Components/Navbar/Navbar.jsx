@@ -39,7 +39,7 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="CommingSoon">
-                Favorites
+                Favourites
                 </NavLink>
               </li>
               <li className="nav-item">
