@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
     <navbar>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/">
+      <nav className="navbar navbar-expand-lg  bg-dark">
+        <div className="container-fluid ">
+          <NavLink className="navbar-brand text-danger fw-bold" to="/">
             WATCH VERSE
           </NavLink>
           <button
@@ -20,36 +20,36 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <NavLink className="nav-link active" aria-current="page" to="/">
+          <div className="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
+              <li className="nav-item ">
+                <NavLink className="nav-link text-danger fw-bold active" aria-current="page" to="/">
                   Home
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="BoxOffice">
+                <NavLink className="nav-link text-danger fw-bold" to="BoxOffice">
                   Box Office
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="CommingSoon">
+                <NavLink className="nav-link text-danger fw-bold" to="CommingSoon">
                   Comming Soon
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="CommingSoon">
+                <NavLink className="nav-link text-danger fw-bold" to="Favourites">
                 Favourites
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="CommingSoon">
+                <NavLink className="nav-link text-danger fw-bold" to="CommingSoon">
                   sign in 
                 </NavLink>
               </li>
               <li className="nav-item dropdown">
                 <NavLink
-                  className="nav-link dropdown-toggle"
+                  className="nav-link text-danger fw-bold dropdown-toggle"
                   href="#"
                   role="button"
                   data-bs-toggle="dropdown"
