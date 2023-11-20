@@ -1,9 +1,13 @@
 import React from 'react'
+import MovieDiscuvery from '../MovieDiscuvery/MovieDiscuvery'
 
 
 export default function Home() {
   return (
 
-    <><h1 className='text-center p-5'>Homee</h1></>
+    <div className='text-center p-5'>
+    
+    <MovieDiscuvery/>
+    </div>
   )
 }

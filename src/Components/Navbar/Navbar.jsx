@@ -3,22 +3,22 @@ import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <navbar>
+    <div>
       <nav className="navbar navbar-expand-lg  bg-dark">
         <div className="container-fluid ">
           <NavLink className="navbar-brand text-danger fw-bold" to="/">
             WATCH VERSE
           </NavLink>
           <button
-            className="navbar-toggler"
-            type="button"
+            className="navbar-toggler text-danger"
+            type="button "
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon" />
+            <span className="navbar-toggler-icon " />
           </button>
           <div className="collapse navbar-collapse " id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
@@ -58,14 +58,14 @@ export default function Navbar() {
                   More
                 </NavLink>
 
-                <ul className="dropdown-menu dropdown-menu-end">
+                <ul className="dropdown-menu dropdown-menu-end text-danger bg-dark">
                   <li>
-                    <a className="dropdown-item " href="#">
+                    <a className="dropdown-item text-danger fw-bold" href="#">
                       Creating new account
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item " href="#">
+                    <a className="dropdown-item text-danger fw-bold" href="#">
                       Another action
                     </a>
                   </li>
@@ -73,7 +73,7 @@ export default function Navbar() {
                     <hr className="dropdown-divider " />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item text-danger fw-bold" href="#">
                       Something else here
                     </a>
                   </li>
@@ -83,7 +83,7 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-    </navbar>
+    </div>
   );
 }
 

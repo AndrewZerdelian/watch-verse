@@ -5,6 +5,7 @@ import Home from "./Components/Home/Home";
 import BoxOffice from "./Components/BoxOffice/BoxOffice";
 import CommingSoon from "./Components/CommingSoon/CommingSoon";
 import Favourites from "./Components/Favourites/Favourites";
+import MovieDiscuveryContext from "./Context/MovieDiscuveryContext/MovieDiscuveryContext";
 
 export default function App() {
   const routers = createBrowserRouter([
@@ -26,7 +27,9 @@ export default function App() {
 
   return (
     <div >
+    <MovieDiscuveryContext>
       <RouterProvider router={routers}></RouterProvider>
+      </MovieDiscuveryContext>
     </div>
   );
 }
