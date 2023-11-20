@@ -3,9 +3,9 @@ import Slider from "react-slick";
 import FirstImage from "../../Assets/1.jpeg";
 import FirstImage2 from "../../Assets/2.jpg";
 import FirstImage3 from "../../Assets/3.jpg";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { MovieDiscuveryCont } from "../../Context/MovieDiscuveryContext/MovieDiscuveryContext";
-import axios from "axios";
+
 export default function MovieDiscuvery() {
   var settings = {
     dots: true,
@@ -28,22 +28,57 @@ export default function MovieDiscuvery() {
   };
 
   //////////////////////////////API FOR CAURSEL /////////////////////////
-  const { MovieDiscuveryCarouselGetAPI } = useContext(MovieDiscuveryCont);
-  const [MappingMovieDiscuveryContext, setMappingMovieDiscuveryContext] =
-    useState([]);
+  const {
+    MovieDiscuveryCarouselGetAPI,
+    MappingDiscovery,
+    setMappingDiscovery,
+  } = useContext(MovieDiscuveryCont);
+  
+  const ImagesBasicPath = "https://image.tmdb.org/t/p/w500/";
+
 
   async function GetDiscvuverMovies() {
     const response = await MovieDiscuveryCarouselGetAPI();
-    //setMappingMovieDiscuveryContext(response);
-    //console.log(response.results);
+    setMappingDiscovery(response.results);
+
+    console.log(response.results);
   }
 
   useEffect(() => {
     GetDiscvuverMovies();
   }, []);
 
-  ////////////////////////////////test for movie images //////////////////////////////////
-  async function CoverImages() {
+  return (
+    <div>
+      <div>
+        {MappingDiscovery.map((item) => (
+          <div key={item.id}>
+            {item.original_title}
+            <img src={ImagesBasicPath+item.backdrop_path} alt="background" />
+          </div>
+        ))}
+      </div>
+      <Slider {...settings} className="w-100">
+        <div>
+          <img src={FirstImage} alt="background" />
+        </div>
+        <div>
+          <img src={FirstImage2} alt="background" />
+        </div>
+        <div>
+          <img src={FirstImage3} alt="background" />
+        </div>
+      </Slider>
+    </div>
+  );
+}
+/**
+ *  <img src={item.ImagesBasicPath
+} alt="blabla" />
+ */
+////////////////////////////////test for movie images //////////////////////////////////
+/**
+  *  async function CoverImages() {
     try {
       const response = await axios.get(
         "https://api.themoviedb.org/3/movie/872585/images"
@@ -59,7 +94,8 @@ export default function MovieDiscuvery() {
     CoverImages();
   }, []);
 
-  /**
+  */
+/**
   *  const options = {
     method: "GET",
     url: "https://api.themoviedb.org/3/movie/872585/images",
@@ -80,20 +116,5 @@ export default function MovieDiscuvery() {
     });
   */
 
-  ///////////////////////////////TO BE TESTED TOMORROW WITH THE API
-  //need to make it with async function try and catch and axios .get method
-
-  return (
-    <Slider {...settings} className="w-100">
-      <div>
-        <img src={FirstImage} alt="background" />
-      </div>
-      <div>
-        <img src={FirstImage2} alt="background" />
-      </div>
-      <div>
-        <img src={FirstImage3} alt="background" />
-      </div>
-    </Slider>
-  );
-}
+///////////////////////////////TO BE TESTED TOMORROW WITH THE API
+//need to make it with async function try and catch and axios .get method
