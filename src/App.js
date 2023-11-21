@@ -27,6 +27,7 @@ export default function App() {
 
   return (
     <div >
+    
     <MovieDiscuveryContext>
       <RouterProvider router={routers}></RouterProvider>
       </MovieDiscuveryContext>
