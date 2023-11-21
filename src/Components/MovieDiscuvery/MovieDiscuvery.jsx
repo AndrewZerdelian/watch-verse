@@ -1,20 +1,16 @@
 import Slider from "react-slick";
-
-import FirstImage from "../../Assets/1.jpeg";
-import FirstImage2 from "../../Assets/2.jpg";
-import FirstImage3 from "../../Assets/3.jpg";
 import { useContext, useEffect } from "react";
 import { MovieDiscuveryCont } from "../../Context/MovieDiscuveryContext/MovieDiscuveryContext";
 
 export default function MovieDiscuvery() {
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    arrows: true,
+    arrows: false,
     fade: true,
     appendDots: (dots) => <ul style={{ margin: "0px" }}>{dots}</ul>,
     customPaging: (i) => (
@@ -33,9 +29,8 @@ export default function MovieDiscuvery() {
     MappingDiscovery,
     setMappingDiscovery,
   } = useContext(MovieDiscuveryCont);
-  
-  const ImagesBasicPath = "https://image.tmdb.org/t/p/w500/";
 
+  const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
 
   async function GetDiscvuverMovies() {
     const response = await MovieDiscuveryCarouselGetAPI();
@@ -49,27 +44,18 @@ export default function MovieDiscuvery() {
   }, []);
 
   return (
-    <div>
-      <div>
-        {MappingDiscovery.map((item) => (
-          <div key={item.id}>
-            {item.original_title}
-            <img src={ImagesBasicPath+item.backdrop_path} alt="background" />
-          </div>
-        ))}
-      </div>
-      <Slider {...settings} className="w-100">
-        <div>
-          <img src={FirstImage} alt="background" />
+    <Slider {...settings} className="w-100">
+      {MappingDiscovery.map((item) => (
+        <div key={item.id}>
+          <img
+            src={ImagesBasicPath + item.backdrop_path}
+            alt="background"
+            className=" h-100 mx-auto rounded-5"
+            style={{width: '100%', height: "10%"}}
+          />
         </div>
-        <div>
-          <img src={FirstImage2} alt="background" />
-        </div>
-        <div>
-          <img src={FirstImage3} alt="background" />
-        </div>
-      </Slider>
-    </div>
+      ))}
+    </Slider>
   );
 }
 /**
