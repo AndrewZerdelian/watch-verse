@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg  bg-dark">
+      <nav className="navbar navbar-expand-lg ">
         <div className="container-fluid ">
           <NavLink className="navbar-brand text-danger fw-bold" to="/">
             WATCH VERSE
