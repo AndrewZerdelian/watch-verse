@@ -7,6 +7,8 @@ import CommingSoon from "./Components/CommingSoon/CommingSoon";
 import Favourites from "./Components/Favourites/Favourites";
 import MovieDiscuveryContext from "./Context/MovieDiscuveryContext/MovieDiscuveryContext";
 import TVDiscuveryContextProvider from "./Context/TVDiscuveryContext/TVDiscuveryContext";
+import { Provider } from "react-redux";
+import { myStore } from "./Redux/Store";
 
 export default function App() {
   const routers = createBrowserRouter([
@@ -28,11 +30,13 @@ export default function App() {
 
   return (
     <div >
+    <Provider store={myStore}>
     <TVDiscuveryContextProvider>
     <MovieDiscuveryContext>
       <RouterProvider router={routers}></RouterProvider>
       </MovieDiscuveryContext>
       </TVDiscuveryContextProvider>
+      </Provider>
     </div>
   );
 }
