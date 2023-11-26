@@ -1,8 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { increment } from "../../Redux/TestingSlice";
+
 
 export default function Footer() {
-  return <footer> 
   
+let {Counter} = useSelector((state)=> state.Counter)
+  let dispatch = useDispatch()
+  return <footer> 
+ <div className="text-danger"> THE COUNT IS {Counter}
+ 
+ <button className="btn bg-info "onClick={()=>dispatch(increment()) }>increment</button></div>
 <div className="card bg-black text-white">
   <h5 className="card-header">Featured</h5>
   <div className="card-body">
@@ -15,3 +23,5 @@ export default function Footer() {
 
   </footer>;
 }
+
+
