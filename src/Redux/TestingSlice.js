@@ -8,11 +8,12 @@ let x = { Counter: 0, Name: "" };
 
   reducers: {
     increment: function (state) {
-      state.Counter += 1;
+      state.Counter = state.Counter + 1;
       console.log("incrementING counter");
     },
 
-    decrement: function () {
+    decrement: function (state) {
+      state.Counter = state.Counter - 1;
       console.log("decrementING counter");
     },
   },
