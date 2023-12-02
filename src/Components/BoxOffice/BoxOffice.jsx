@@ -38,33 +38,48 @@ export default function BoxOffice() {
             <h3 className="text-white">
               {movie.title.split(" ").slice(0, 4).join(" ")}
             </h3>
-            <div className="d-flex justify-content-around align-items-center">
-              <div className="text-white ">{movie.vote_average.toFixed(1)}
-              <i className="fa-sharp fa-solid fa-star text-danger"></i></div>
-              <button className="btn btn-danger  ">More Info</button>
+            <div className="d-flex justify-content-around align-items-center my-3">
+              <div className="text-white gut-5">
+                {movie.vote_average.toFixed(1)}
+                <i className="fa-sharp fa-solid fa-star text-danger"></i>
+              </div>
+              <div className="text-white">{movie.release_date}</div>
             </div>
+            <button className="btn btn-danger">More Info</button>
           </div>
         ))}
       </div>
-      <div className="d-flex justify-content-around align-items-center ">
-<nav aria-label="Page navigation example ">
-  <ul className="pagination ">
-    <li className="page-item ">
-      <a className="page-link " href="#" aria-label="Previous">
-        <span aria-hidden="true">«</span>
-      </a>
-    </li>
-    <li className="page-item "><a className="page-link" href="#">1</a></li>
-    <li className="page-item "><a className="page-link" href="#">2</a></li>
-    <li className="page-item "><a className="page-link" href="#">3</a></li>
-    <li className="page-item ">
-      <a className="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">»</span>
-      </a>
-    </li>
-  </ul>
-</nav>
 
+      <div className="d-flex justify-content-around align-items-center ">
+        <nav aria-label="Page navigation example ">
+          <ul className="pagination ">
+            <li className="page-item ">
+              <a className="page-link " href="#" aria-label="Previous">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+            <li className="page-item ">
+              <a className="page-link" href="#">
+                1
+              </a>
+            </li>
+            <li className="page-item ">
+              <a className="page-link" href="#">
+                2
+              </a>
+            </li>
+            <li className="page-item ">
+              <a className="page-link" href="#">
+                3
+              </a>
+            </li>
+            <li className="page-item ">
+              <a className="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );
