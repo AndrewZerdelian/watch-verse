@@ -7,7 +7,7 @@ export const TopSeriesAPIFUNC = createAsyncThunk(
     const response = await axios.get(
       "https://api.themoviedb.org/3/tv/top_rated?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&language=en-US&page=1"
     );
-    console.log(response);
+    //console.log(response);
     return response;
   }
 );
@@ -21,7 +21,7 @@ const TopSeriesSlice = createSlice({
     name: "TopSeriesInitialState",
     initialState:{
         APIDATA:[],
-        isLoading: false,
+        isLoading: true,
     },
 
 
@@ -33,13 +33,17 @@ const TopSeriesSlice = createSlice({
         builder.addCase(TopSeriesAPIFUNC.pending,
             function(PrevState,Action){
                 PrevState.isLoading= true;
-                console.log('Pending');
+                //console.log('Pending');
             });
+ 
 
         builder.addCase(TopSeriesAPIFUNC.fulfilled,
             function(prevstate,Action){
-                prevstate.APIDATA= Action.payload
-                console.log('API FETCHED');
+                //console.log('API FETCHED');
+                prevstate.isLoading = false;
+                prevstate.APIDATA = Action.payload.data.results;
+                console.log(prevstate.APIDATA);
+                
             })
     }
 })
