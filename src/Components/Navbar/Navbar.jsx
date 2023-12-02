@@ -33,6 +33,11 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
+                <NavLink className="nav-link text-danger fw-bold" to="TopSeries">
+                  Top Series
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink className="nav-link text-danger fw-bold" to="CommingSoon">
                   Comming Soon
                 </NavLink>

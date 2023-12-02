@@ -9,6 +9,7 @@ import MovieDiscuveryContext from "./Context/MovieDiscuveryContext/MovieDiscuver
 import TVDiscuveryContextProvider from "./Context/TVDiscuveryContext/TVDiscuveryContext";
 import { Provider } from "react-redux";
 import { myStore } from "./Redux/Store";
+import TopSeries from "./Components/TopSeries/TopSeries";
 
 export default function App() {
   const routers = createBrowserRouter([
@@ -22,8 +23,9 @@ export default function App() {
         },
 
         { path: "BoxOffice", element: <BoxOffice /> },
+        {path:"TopSeries",element: <TopSeries/>},
         { path: "CommingSoon", element: <CommingSoon /> },
-        {path:"Favourites",element: <Favourites/>}
+        {path:"Favourites",element: <Favourites/>},
       ],
     },
   ]);

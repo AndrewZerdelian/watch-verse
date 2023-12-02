@@ -7,7 +7,7 @@ export const BoxOfficeAPIFunction = createAsyncThunk(
   "BoxOfficeSlice/GETBoxOFFICEAPI",
   async function () {
     const response = await axios.get(
-      "https://api.themoviedb.org/3/movie/now_playing?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=true&include_video=true&language=en-US&page=1"
+      "https://api.themoviedb.org/3/movie/now_playing?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&include_video=true&language=en-US&page=1"
     );
 
     console.log(response);
