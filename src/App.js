@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import { myStore } from "./Redux/Store";
 import TopSeries from "./Components/TopSeries/TopSeries";
 import BoxOfficeDetails from "./Components/BoxOffice/BoxOfficeDetails/BoxOfficeDetails";
+import TopSeriesDetails from "./Components/TopSeries/TopSeriesDetails/TopSeriesDetails";
 
 export default function App() {
   const routers = createBrowserRouter([
@@ -26,6 +27,7 @@ export default function App() {
         { path: "BoxOffice", element: <BoxOffice /> },
         {path:"BoxOfficeDetails/:ID",element: <BoxOfficeDetails/>},
         {path:"TopSeries",element: <TopSeries/>},
+        {path:"TopSeriesDetails/:ID",element: <TopSeriesDetails/>},
         { path: "CommingSoon", element: <CommingSoon /> },
         {path:"Favourites",element: <Favourites/>},
       ],
