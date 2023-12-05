@@ -33,7 +33,7 @@ export default function BoxOffice() {
         {isError && <p>Error fetching data</p>}
 
         {allData.map((movie) => (
-          <div key={movie.id} className="col-3 text-center py-5 pos">
+          <div key={movie.id} className={`col-3 text-center py-5 pos ${Style.Scalling}`}>
             <Link
               className={`${Style.Link}`}
               to={`/BoxOfficeDetails/${movie.id}`}

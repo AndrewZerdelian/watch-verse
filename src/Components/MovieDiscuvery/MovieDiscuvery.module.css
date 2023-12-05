@@ -1,5 +1,25 @@
 .MainCarouselStyle{
+    
  width: 100%;
- height: auto;
+ height: 100%;
+ 
 }
 
+.Absolute{
+    position: absolute;
+    left:0%;
+    top: 0%;
+    font-size: 80px ;
+    font-weight: bolder;
+    font-family: 'Times New Roman', Times, serif;
+    
+    
+    
+}
+
+.PosterFont{
+    color: red;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    
+    
+}

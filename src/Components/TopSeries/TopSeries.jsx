@@ -32,15 +32,19 @@ export default function TopSeries() {
         <div className="container-fluid">
           <div className="row">
             {APIDATA.map((Series) => (
-              <div className="col-3 text-center py-5" key={Series.id}>
-                <Link className={`${Style.Link}`}
-              to={`/TopSeriesDetails/${Series.id}`}>
+              <div
+                className={`col-3 text-center py-5 ${Style.Scalling}`}
+                key={Series.id}
+              >
+                <Link
+                  className={`${Style.Link}`}
+                  to={`/TopSeriesDetails/${Series.id}`}
+                >
                   <img
                     src={ImagesBasicPath + Series.poster_path}
                     alt="Series"
                     className="w-75"
                   />
-
                   <h3 className="text-white">
                     {Series.name.split(" ").slice(0, 4).join(" ")}
                   </h3>

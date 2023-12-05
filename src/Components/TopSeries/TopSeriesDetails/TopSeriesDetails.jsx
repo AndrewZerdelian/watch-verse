@@ -23,8 +23,8 @@ export default function TopSeriesDetails() {
     <div className={`${Styling.main} text-white`}>
       {isLoading ? (
         <div className="d-flex justify-content-center ">
-          <div class="spinner-border text-danger " role="status">
-            <span class="visually-hidden ">Loading...</span>
+          <div className="spinner-border text-danger " role="status">
+            <span className="visually-hidden ">Loading...</span>
           </div>
         </div>
       ) : (
@@ -33,15 +33,17 @@ export default function TopSeriesDetails() {
             className={` ${Styling.Background} `}
             src={ImagesBasicPath + APIDATA.backdrop_path}
             alt={APIDATA.title}
+            
           />
           <div className="container-fluid vh-100 row justify-content-center align-items-center">
+          
             <div className="col-3 text-center">
               <img
                 src={ImagesBasicPath + APIDATA.poster_path}
                 className="w-100  rounded-1 shadow-lg"
                 alt={APIDATA.title}
               ></img>
-              <h1 className="text-danger fw-bolder">{APIDATA.title}</h1>
+              <h1 className="text-danger fw-bolder">{APIDATA.name}</h1>
               <p className="h4">{APIDATA.tagline}</p>
             </div>
             <div className="col-6 pt-5">
@@ -59,7 +61,7 @@ export default function TopSeriesDetails() {
               <div className="h5 d-flex ">
                 Genre:
                 {APIDATA.genres.map((TAGS) => (
-                  <div className="badge bg-dark mx-1 px-2 ">{TAGS.name}</div>
+                  <div key={TAGS.id} className="badge bg-dark mx-1 px-2 ">{TAGS.name}</div>
                 ))}
               </div>
             </div>

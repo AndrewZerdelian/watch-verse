@@ -20,36 +20,49 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon " />
           </button>
-          <div className="collapse navbar-collapse " id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse "
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
-              <li className="nav-item ">
-                <NavLink className="nav-link text-danger fw-bold active" aria-current="page" to="/">
-                  Home
-                </NavLink>
-              </li>
               <li className="nav-item">
-                <NavLink className="nav-link text-danger fw-bold" to="BoxOffice">
+                <NavLink
+                  className="nav-link text-danger fw-bold"
+                  to="BoxOffice"
+                >
                   Box Office
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link text-danger fw-bold" to="TopSeries">
+                <NavLink
+                  className="nav-link text-danger fw-bold"
+                  to="TopSeries"
+                >
                   Top Series
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link text-danger fw-bold" to="CommingSoon">
+                <NavLink
+                  className="nav-link text-danger fw-bold"
+                  to="CommingSoon"
+                >
                   Comming Soon
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link text-danger fw-bold" to="Favourites">
-                Favourites
+                <NavLink
+                  className="nav-link text-danger fw-bold"
+                  to="Favourites"
+                >
+                  Favourites
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link text-danger fw-bold" to="CommingSoon">
-                  sign in 
+                <NavLink
+                  className="nav-link text-danger fw-bold"
+                  to="CommingSoon"
+                >
+                  sign in
                 </NavLink>
               </li>
               <li className="nav-item dropdown">
@@ -91,7 +104,13 @@ export default function Navbar() {
     </div>
   );
 }
-
+/**
+ *               <li className="nav-item ">
+                <NavLink className="nav-link text-danger fw-bold active" aria-current="page" to="/">
+                  Home
+                </NavLink>
+              </li>
+ */
 /*
  *       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
