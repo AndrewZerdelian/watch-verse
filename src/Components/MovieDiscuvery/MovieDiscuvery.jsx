@@ -34,15 +34,19 @@ export default function MovieDiscuvery() {
   }, []);
 
   return (
-    <div>
+    <div className="container-fluid ">
       <Slider {...settings}>
         {MappingDiscovery.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className="position-relative">
             <img
               src={ImagesBasicPath + item.backdrop_path}
               alt="background"
-              className={`${Module.MainCarouselStyle} pb-5 mx-auto rounded-5`}
+              className={`${Module.MainCarouselStyle} mx-auto rounded-5 opacity-50`}
             />
+            <div className={`text-white ${Module.Absolute} w-25 `}>
+              <span className={`${Module.PosterFont}`}>{item.title}</span>
+              
+            </div>
           </div>
         ))}
       </Slider>
@@ -50,6 +54,27 @@ export default function MovieDiscuvery() {
   );
 }
 
+//className="position-absolute bottom-0 start-50 translate-middle-x pb-5 text-danger"
+/**
+ *   return (
+    <div className="container-fluid ">
+      <Slider {...settings}>
+        {MappingDiscovery.map((item) => (
+          <div key={item.id}>
+            <img
+              src={ImagesBasicPath + item.backdrop_path}
+              alt="background"
+              className={`${Module.MainCarouselStyle} mx-auto rounded-5 opacity-75  `}
+            />
+            <h1 className="pb-5 text-danger mx-auto">{item.title}</h1>
+          </div>
+        ))}
+      </Slider>
+      
+    </div>
+  );
+}
+ */
 /**
  *     <Slider {...settings} className={Module.slider}>
       {MappingDiscovery.map((item) => (

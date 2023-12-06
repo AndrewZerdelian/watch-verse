@@ -4,3 +4,12 @@
   .Scalling:hover {
     transform: scale(1.2);
   }
+
+
+
+  .FontColor{
+    color: red;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    
+    
+}

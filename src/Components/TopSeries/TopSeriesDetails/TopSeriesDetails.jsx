@@ -23,8 +23,8 @@ export default function TopSeriesDetails() {
     <div className={`${Styling.main} text-white`}>
       {isLoading ? (
         <div className="d-flex justify-content-center ">
-          <div class="spinner-border text-danger " role="status">
-            <span class="visually-hidden ">Loading...</span>
+          <div className="spinner-border text-danger " role="status">
+            <span className="visually-hidden ">Loading...</span>
           </div>
         </div>
       ) : (
@@ -41,7 +41,7 @@ export default function TopSeriesDetails() {
                 className="w-100  rounded-1 shadow-lg"
                 alt={APIDATA.title}
               ></img>
-              <h1 className="text-danger fw-bolder">{APIDATA.title}</h1>
+              <h1 className="text-danger fw-bolder">{APIDATA.name}</h1>
               <p className="h4">{APIDATA.tagline}</p>
             </div>
             <div className="col-6 pt-5">
@@ -50,16 +50,22 @@ export default function TopSeriesDetails() {
                 <div className="pt-3">{APIDATA.overview}</div>
               </div>
               <div className="h5">
-                IMDB {APIDATA.vote_average.toFixed(1)}<i className="fa-sharp fa-solid fa-star text-danger"></i> / 10
-                
+                IMDB {APIDATA.vote_average.toFixed(1)}
+                <i className="fa-sharp fa-solid fa-star text-danger"></i> / 10
               </div>
-              <div className="h5">Duration: {APIDATA.runtime} M</div>
-              <div className="h5">Release Date: {APIDATA.release_date}</div>
+              <div className="h5">Seasons: {APIDATA.number_of_seasons}</div>
+              <div className="h5">Episodes: {APIDATA.number_of_episodes}</div>
+              <div className="h5">
+                Episode Duration: {APIDATA.episode_run_time} M
+              </div>
+              <div className="h5">Release Date: {APIDATA.first_air_date}</div>
               <div className="h5">status: {APIDATA.status}</div>
               <div className="h5 d-flex ">
                 Genre:
                 {APIDATA.genres.map((TAGS) => (
-                  <div className="badge bg-dark mx-1 px-2 ">{TAGS.name}</div>
+                  <div key={TAGS.id} className="badge bg-dark mx-1 px-2 ">
+                    {TAGS.name}
+                  </div>
                 ))}
               </div>
             </div>
@@ -78,3 +84,12 @@ export default function TopSeriesDetails() {
   )
 }
 */
+
+/**
+ * <div className="h5">Episode Duration: {APIDATA.episode_run_time} M</div>
+              <div className="h5">Episode Duration: {APIDATA.episode2_run_time} M</div>
+              <div className="h5">Episode Duration: {APIDATA.episode3_run_time} M</div>
+              <div className="h5">Release Date: {APIDATA.first_air_date}</div>
+              <div className="h5">Last Episode: {APIDATA.last_episode_to_air}</div>
+              <div className="h5">status: {APIDATA.status}</div>
+ */
