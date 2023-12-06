@@ -34,13 +34,14 @@ export default function TVDiscuvery() {
       <h2 className="fw-bold text-white opacity-100 "> TV Shows </h2>
       <Slider {...settings } >
         {TVMapping.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className={`${Module.Scalling}`}>
             <img
               src={ImagesBasicPath + item.backdrop_path}
               alt="background"
-              className= {`w-100 px-3 ${Module.Scalling} rounded-5 `} 
+              className= {`w-100 px-3  rounded-5 `} 
               
             />
+            <h3 className={`${Module.FontColor} pb-5 `}>{item.name.split(" ").slice(0, 3).join(" ")}</h3>
           </div>
         ))}
       </Slider>
