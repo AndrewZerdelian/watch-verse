@@ -13,6 +13,7 @@ import TopSeries from "./Components/TopSeries/TopSeries";
 import BoxOfficeDetails from "./Components/BoxOffice/BoxOfficeDetails/BoxOfficeDetails";
 import TopSeriesDetails from "./Components/TopSeries/TopSeriesDetails/TopSeriesDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import CommingSoonDetails from "./Components/CommingSoon/CommingSoonDetails/CommingSoonDetails";
 
 export default function App() {
   let Query = new QueryClient();
@@ -31,6 +32,8 @@ export default function App() {
         {path:"TopSeries",element: <TopSeries/>},
         {path:"TopSeriesDetails/:ID",element: <TopSeriesDetails/>},
         { path: "CommingSoon", element: <CommingSoon /> },
+        { path: "CommingSoonDetails/:ID", element: <CommingSoonDetails /> },
+        
         {path:"Favourites",element: <Favourites/>},
       ],
     },

@@ -21,7 +21,7 @@ export default function TopSeries() {
 
   return (
     <div className="text-white text-center">
-      <h1 className="text-danger ">TopSeries</h1>
+      <h1 className="text-danger p-5 text-center">TopSeries</h1>
       {isLoading ? (
         <div className="d-flex justify-content-center ">
           <div className="spinner-border text-danger " role="status">
