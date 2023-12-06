@@ -22,6 +22,7 @@ export default function BoxOffice() {
 
   return (
     <div className="container-fluid">
+    <h1 className="text-danger p-5 text-center ">Box Office</h1>
       <div className="row">
         {isLoading && (
           <div className="d-flex justify-content-center ">
