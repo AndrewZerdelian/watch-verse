@@ -12,8 +12,10 @@ import { myStore } from "./Redux/Store";
 import TopSeries from "./Components/TopSeries/TopSeries";
 import BoxOfficeDetails from "./Components/BoxOffice/BoxOfficeDetails/BoxOfficeDetails";
 import TopSeriesDetails from "./Components/TopSeries/TopSeriesDetails/TopSeriesDetails";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function App() {
+  let Query = new QueryClient();
   const routers = createBrowserRouter([
     {
       path: "/",
@@ -36,6 +38,7 @@ export default function App() {
 
   return (
     <div >
+    <QueryClientProvider client={Query}>
     <Provider store={myStore}>
     <TVDiscuveryContextProvider>
     <MovieDiscuveryContext>
@@ -43,6 +46,7 @@ export default function App() {
       </MovieDiscuveryContext>
       </TVDiscuveryContextProvider>
       </Provider>
+      </QueryClientProvider>
     </div>
   );
 }
