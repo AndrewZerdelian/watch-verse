@@ -14,6 +14,8 @@ import BoxOfficeDetails from "./Components/BoxOffice/BoxOfficeDetails/BoxOfficeD
 import TopSeriesDetails from "./Components/TopSeries/TopSeriesDetails/TopSeriesDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import CommingSoonDetails from "./Components/CommingSoon/CommingSoonDetails/CommingSoonDetails";
+import Login from "./Components/Login/Login";
+import Registration from "./Components/Registration/Registration";
 
 export default function App() {
   let Query = new QueryClient();
@@ -28,27 +30,28 @@ export default function App() {
         },
 
         { path: "BoxOffice", element: <BoxOffice /> },
-        {path:"BoxOfficeDetails/:ID",element: <BoxOfficeDetails/>},
-        {path:"TopSeries",element: <TopSeries/>},
-        {path:"TopSeriesDetails/:ID",element: <TopSeriesDetails/>},
+        { path: "BoxOfficeDetails/:ID", element: <BoxOfficeDetails /> },
+        { path: "TopSeries", element: <TopSeries /> },
+        { path: "TopSeriesDetails/:ID", element: <TopSeriesDetails /> },
         { path: "CommingSoon", element: <CommingSoon /> },
         { path: "CommingSoonDetails/:ID", element: <CommingSoonDetails /> },
-        
-        {path:"Favourites",element: <Favourites/>},
+        { path: "Favourites", element: <Favourites /> },
+        { path: "Login", element: <Login /> },
+        { path: "Registration", element: <Registration /> },
       ],
     },
   ]);
 
   return (
-    <div >
-    <QueryClientProvider client={Query}>
-    <Provider store={myStore}>
-    <TVDiscuveryContextProvider>
-    <MovieDiscuveryContext>
-      <RouterProvider router={routers}></RouterProvider>
-      </MovieDiscuveryContext>
-      </TVDiscuveryContextProvider>
-      </Provider>
+    <div>
+      <QueryClientProvider client={Query}>
+        <Provider store={myStore}>
+          <TVDiscuveryContextProvider>
+            <MovieDiscuveryContext>
+              <RouterProvider router={routers}></RouterProvider>
+            </MovieDiscuveryContext>
+          </TVDiscuveryContextProvider>
+        </Provider>
       </QueryClientProvider>
     </div>
   );

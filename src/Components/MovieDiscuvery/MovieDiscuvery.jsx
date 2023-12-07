@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import { useContext, useEffect } from "react";
 import { MovieDiscuveryCont } from "../../Context/MovieDiscuveryContext/MovieDiscuveryContext";
 import Module from "./MovieDiscuvery.module.css";
+//import { Link } from "react-router-dom";
 export default function MovieDiscuvery() {
   var settings = {
     dots: false,
@@ -38,14 +39,15 @@ export default function MovieDiscuvery() {
       <Slider {...settings}>
         {MappingDiscovery.map((item) => (
           <div key={item.id} className="position-relative">
+            {/** <Link to={`/BoxOfficeDetails/${item.id}`}> */}
             <img
               src={ImagesBasicPath + item.backdrop_path}
               alt="background"
               className={`${Module.MainCarouselStyle} mx-auto rounded-5 opacity-50`}
             />
+            {/**</Link> */}
             <div className={`text-white ${Module.Absolute} w-25 `}>
               <span className={`${Module.PosterFont}`}>{item.title}</span>
-              
             </div>
           </div>
         ))}

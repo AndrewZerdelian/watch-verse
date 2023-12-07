@@ -11,7 +11,7 @@ export default function TVDiscuvery() {
   async function GetTVDiscuvery() {
     const response = await TVDiscuveryGETAPI();
     setTVMapping(response);
-    console.log(response);
+    //console.log(response);
   }
 
   useEffect(() => {
