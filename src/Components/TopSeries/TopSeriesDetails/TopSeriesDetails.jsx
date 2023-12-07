@@ -68,6 +68,7 @@ export default function TopSeriesDetails() {
                   </div>
                 ))}
               </div>
+              <button className="btn btn-danger">add to Favourites</button>
             </div>
           </div>
         </div>

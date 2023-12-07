@@ -8,6 +8,8 @@ import Styling from "./BoxOfficeDetails.module.css";
 export default function BoxOfficeDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
 
+  //const TrailerPath = (`https://api.themoviedb.org/3/movie/1075794/videos?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&language=en-US`)
+
   const { APIDATA, isLoading } = useSelector((selector) => selector.BODetails);
 
   const Dispatch = useDispatch();
@@ -23,8 +25,8 @@ export default function BoxOfficeDetails() {
     <div className={`${Styling.main} text-white`}>
       {isLoading ? (
         <div className="d-flex justify-content-center ">
-          <div class="spinner-border text-danger " role="status">
-            <span class="visually-hidden ">Loading...</span>
+          <div className="spinner-border text-danger " role="status">
+            <span className="visually-hidden ">Loading...</span>
           </div>
         </div>
       ) : (
@@ -62,6 +64,7 @@ export default function BoxOfficeDetails() {
                   <div className="badge bg-dark mx-1 px-2 ">{TAGS.name}</div>
                 ))}
               </div>
+              <button className="btn btn-danger me-5">add to Favourites</button>
             </div>
           </div>
         </div>
@@ -70,6 +73,7 @@ export default function BoxOfficeDetails() {
   );
 }
 
+/**<button className="btn btn-danger"> <a href={TrailerPath}></a>Watch Trailer</button> */
 /**
  * return (
     <div className={`${Styling.main} text-white`}>

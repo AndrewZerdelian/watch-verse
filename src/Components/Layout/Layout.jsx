@@ -12,3 +12,6 @@ export default function Layout() {
     </div>
   );
 }
+
+
+//.bg-black.bg-gradient

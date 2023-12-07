@@ -60,7 +60,7 @@ export default function Navbar() {
               <li className="nav-item">
                 <NavLink
                   className="nav-link text-danger fw-bold"
-                  to="CommingSoon"
+                  to="Login"
                 >
                   sign in
                 </NavLink>
@@ -75,15 +75,14 @@ export default function Navbar() {
                 >
                   More
                 </NavLink>
-
                 <ul className="dropdown-menu dropdown-menu-end text-danger bg-dark">
                   <li>
-                    <a className="dropdown-item text-danger fw-bold" href="#">
+                    <NavLink to="Registration" className="dropdown-item text-danger fw-bold bg-dark" >
                       Creating new account
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
-                    <a className="dropdown-item text-danger fw-bold" href="#">
+                    <a className="dropdown-item text-danger fw-bold bg-dark" href="#">
                       Another action
                     </a>
                   </li>
@@ -91,7 +90,7 @@ export default function Navbar() {
                     <hr className="dropdown-divider " />
                   </li>
                   <li>
-                    <a className="dropdown-item text-danger fw-bold" href="#">
+                    <a className="dropdown-item text-danger fw-bold bg-dark" href="#">
                       Something else here
                     </a>
                   </li>
