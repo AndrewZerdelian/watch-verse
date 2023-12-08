@@ -41,7 +41,6 @@ export default function BoxOfficeDetails() {
      setVideoId(trailers[0].key);
    }
     */
-
       console.log(response);
       return response;
     } catch (error) {
@@ -52,6 +51,8 @@ export default function BoxOfficeDetails() {
   //useEffect(()=> {MovieTrailer()},[])
 
   const opts = {
+    height: "500",
+    width: "100%",
     playerVars: {
       autoplay: 1,
     },
@@ -112,11 +113,17 @@ export default function BoxOfficeDetails() {
           </div>
         </div>
       )}
-
-      <YouTube videoId={videoId} opts={opts} className="vh-100 w-100" />
+      <button className="btn btn-danger me-5">add to Favourites</button>
+      <button onClick={MovieTrailer} className="btn btn-danger me-5">
+        Watch Trailer
+      </button>
+      <div className="container vh-75">
+        <YouTube videoId={videoId} opts={opts} />
+      </div>
     </div>
   );
 }
+
 //{videoId && <YouTube videoId={videoId} opts={opts}   />}
 //<YouTube videoId={videoId} opts={opts} onReady={onReady} />
 
