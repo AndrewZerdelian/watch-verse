@@ -20,16 +20,4 @@ export default function Footer() {
   );
 }
 
-/**
- * import { useDispatch, useSelector } from "react-redux";
-import { increment } from "../../Redux/TestingSlice";
 
- * let {Counter} = useSelector((state)=> state.Counter)
-  let dispatch = useDispatch()
-
-  <div className="text-danger"> THE COUNT IS {Counter}
- 
- <button className="btn bg-info "onClick={()=>dispatch(increment()) }>increment</button></div>
-
-  
- */
