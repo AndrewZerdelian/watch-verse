@@ -27,7 +27,7 @@ export default function MovieDiscuvery() {
   async function GetDiscvuverMovies() {
     const response = await MovieDiscuveryCarouselGetAPI();
     setMappingDiscovery(response.results);
-    console.log(response.results);
+    //console.log(response.results);
   }
 
   useEffect(() => {
