@@ -1,5 +1,4 @@
-.main {
-}
+
 .Background {
   position: absolute;
   width: 100%;
@@ -8,4 +7,10 @@
   background-repeat: no-repeat;
   background-position: center center;
   opacity: 10%;
+}
+
+
+.Important{
+  position: absolute !important;
+  
 }

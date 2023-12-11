@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { TopSeriesDetailsAPIFunc } from "../../../Redux/TopSeriesDetailsSlice";
 import Styling from "./TopSeriesDetails.module.css";
+import axios from "axios";
+import YouTube from "react-youtube";
 
 export default function TopSeriesDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
@@ -19,6 +21,33 @@ export default function TopSeriesDetails() {
   useEffect(() => {
     Dispatch(TopSeriesDetailsAPIFunc(Params.ID));
   }, []);
+
+  ////////////////////////Series Trailers////////////////////
+  const [TVSeriesTrailer, SetTVSeriesTrailer] = useState(false);
+  const [videoId, setVideoId] = useState("");
+
+  async function SeriesTrailer() {
+    SetTVSeriesTrailer(true);
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/tv/${Params.ID}/videos?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&language=en-US`
+      );
+      setVideoId(response.data.results[0].key);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const opts = {
+    height: "500",
+    width: "100%",
+    playerVars: {
+      autoplay: 1,
+    },
+  };
+
   return (
     <div className={`${Styling.main} text-white`}>
       {isLoading ? (
@@ -68,29 +97,28 @@ export default function TopSeriesDetails() {
                   </div>
                 ))}
               </div>
-              <button className="btn btn-danger">add to Favourites</button>
+              <div className={`${Styling.Important}`}>
+                <button className="btn btn-danger me-5">
+                  add to Favourites
+                </button>
+                <button
+                  onClick={SeriesTrailer}
+                  className="btn btn-danger me-5 "
+                >
+                  Watch Trailer
+                </button>
+              </div>
             </div>
           </div>
         </div>
       )}
+      {TVSeriesTrailer ? (
+        <div className="container vh-75">
+          <YouTube videoId={videoId} opts={opts} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
-
-/**import React from 'react'
-
-export default function TopSeriesDetails() {
-  return (
-    <div>TopSeriesDetails</div>
-  )
-}
-*/
-
-/**
- * <div className="h5">Episode Duration: {APIDATA.episode_run_time} M</div>
-              <div className="h5">Episode Duration: {APIDATA.episode2_run_time} M</div>
-              <div className="h5">Episode Duration: {APIDATA.episode3_run_time} M</div>
-              <div className="h5">Release Date: {APIDATA.first_air_date}</div>
-              <div className="h5">Last Episode: {APIDATA.last_episode_to_air}</div>
-              <div className="h5">status: {APIDATA.status}</div>
- */
