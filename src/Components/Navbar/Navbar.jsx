@@ -10,7 +10,7 @@ export default function Navbar() {
             WATCH VERSE
           </NavLink>
           <button
-            className="navbar-toggler text-danger"
+            className="navbar-toggler text-danger bg-danger"
             type="button "
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -58,10 +58,7 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  className="nav-link text-danger fw-bold"
-                  to="Login"
-                >
+                <NavLink className="nav-link text-danger fw-bold" to="Login">
                   sign in
                 </NavLink>
               </li>
@@ -77,12 +74,18 @@ export default function Navbar() {
                 </NavLink>
                 <ul className="dropdown-menu dropdown-menu-end text-danger bg-dark">
                   <li>
-                    <NavLink to="Registration" className="dropdown-item text-danger fw-bold bg-dark" >
+                    <NavLink
+                      to="Registration"
+                      className="dropdown-item text-danger fw-bold bg-dark"
+                    >
                       Creating new account
                     </NavLink>
                   </li>
                   <li>
-                    <a className="dropdown-item text-danger fw-bold bg-dark" href="#">
+                    <a
+                      className="dropdown-item text-danger fw-bold bg-dark"
+                      href="#"
+                    >
                       Another action
                     </a>
                   </li>
@@ -90,7 +93,10 @@ export default function Navbar() {
                     <hr className="dropdown-divider " />
                   </li>
                   <li>
-                    <a className="dropdown-item text-danger fw-bold bg-dark" href="#">
+                    <a
+                      className="dropdown-item text-danger fw-bold bg-dark"
+                      href="#"
+                    >
                       Something else here
                     </a>
                   </li>
