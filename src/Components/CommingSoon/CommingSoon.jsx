@@ -1,17 +1,44 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import CoomingSoonQueryApi from "../../ReactQuery/CoomingSoonQueryApi";
+import React, { useContext } from "react";
+import { QueryContext } from "../../ReactQuery/CoomingSoonQueryApi";
 import { Link } from "react-router-dom";
 
 export default function CommingSoon() {
+  const { currentPage, setCurrentPage, comingSoonQueryApi } =
+    useContext(QueryContext);
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
-  const { isLoading, isFetching, isError, isSuccess, data } = useQuery({
-    queryKey: ["GETCoomingSoonQuery"],
-    queryFn: CoomingSoonQueryApi,
+
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["GETCoomingSoonQuery", currentPage],
+    queryFn: () => comingSoonQueryApi(currentPage),
   });
 
-  console.log(isLoading, isFetching, isError, isSuccess, data);
+  console.log(data);
 
+ /////////////////////////////PAGINATION BUTTONS //////////////////////////
+  function Next() {
+    if (currentPage < data?.total_pages) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+  function Previous() {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
+  function PageOne() {
+    setCurrentPage(1);
+  }
+  function PageTwo() {
+    setCurrentPage(2);
+  }
+  function PageThree() {
+    setCurrentPage(3);
+  }
+function LastPage(){
+  setCurrentPage(data?.total_pages);
+}
   return (
     <main>
       <h1 className="text-danger p-5 text-center">CommingSoon</h1>
@@ -30,10 +57,54 @@ export default function CommingSoon() {
         ) : (
           <div className="container-fluid">
             <h3>
-              {data?.data.dates.minimum} - {data?.data.dates.maximum}
+              {data?.dates.minimum} - {data?.dates.maximum}
             </h3>
+            <div className="d-flex justify-content-around align-items-center pt-5">
+              <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <button
+                      onClick={Previous}
+                      className="page-link"
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true">«</span>
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageOne} className="page-link">
+                      1
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageTwo} className="page-link">
+                      2
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageThree} className="page-link">
+                      3
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={LastPage} className="page-link">
+                      {data?.total_pages}
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button
+                      onClick={Next}
+                      className="page-link"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">»</span>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
             <div className="row">
-              {data?.data.results.map((Series) => (
+              {data?.results.map((Series) => (
                 <div className={`col-3 text-center py-5`} key={Series.id}>
                   <img
                     src={ImagesBasicPath + Series.poster_path}
@@ -58,37 +129,56 @@ export default function CommingSoon() {
         )}
 
         <div className="d-flex justify-content-around align-items-center">
-          <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li className="page-item">
-                <a className="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">«</span>
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">»</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+              <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <button
+                      onClick={Previous}
+                      className="page-link"
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true">«</span>
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageOne} className="page-link">
+                      1
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageTwo} className="page-link">
+                      2
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageThree} className="page-link">
+                      3
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={LastPage} className="page-link">
+                      {data?.total_pages}
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button
+                      onClick={Next}
+                      className="page-link"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">»</span>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
       </div>
     </main>
   );
 }
+
+/**
+ *             
+
+           
+ */

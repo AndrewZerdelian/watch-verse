@@ -25,7 +25,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="p-5 ">
+    <div className="p-5 container">
       <form onSubmit={handleChange} className="d-flex container" role="search">
         <input
           id="search"
@@ -36,9 +36,6 @@ export default function SearchBar() {
           placeholder="Search for Movies / Shows and Actors..."
           aria-label="search"
         />
-        <button className="btn btn-outline-danger" type="submit">
-          Search
-        </button>
       </form>
       <div className="container-fluid">
         <div className="row">
@@ -105,6 +102,12 @@ export default function SearchBar() {
     </div>
   );
 }
+
+/**
+ *         <button className="btn btn-outline-danger" type="submit">
+          Search
+        </button>
+ */
 
 /**
  * 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BoxOfficeAPIFunction } from "../../Redux/BoxOfficeSlice";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -8,7 +8,7 @@ import Style from "../BoxOffice/BoxOffice.module.css";
 export default function BoxOffice() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
   const Dispatch = useDispatch();
-
+  const [CurrentPage, SetCurrentPage] = useState(1);
   const { allData, isLoading, isError } = useSelector(
     (store) => store.BOfficeAPI
   );
@@ -16,13 +16,36 @@ export default function BoxOffice() {
   console.log(allData);
 
   useEffect(() => {
-    Dispatch(BoxOfficeAPIFunction());
-  }, []);
+    Dispatch(BoxOfficeAPIFunction(CurrentPage));
+  }, [CurrentPage]);
 
+  ////////////////////////////Paggination Functions////////////////////////
+  function Next() {
+    if (CurrentPage < allData.total_pages) {
+      SetCurrentPage(CurrentPage + 1);
+    }
+  }
+  function Previous() {
+    if (CurrentPage > 1) {
+      SetCurrentPage(CurrentPage - 1);
+    }
+  }
 
+  function PageOne() {
+    SetCurrentPage(1);
+  }
+  function PageTwo() {
+    SetCurrentPage(2);
+  }
+  function PageThree() {
+    SetCurrentPage(3);
+  }
+  function LastPage() {
+    SetCurrentPage(allData.total_pages);
+  }
   return (
     <div className="container-fluid">
-    <h1 className="text-danger p-5 text-center ">Box Office</h1>
+      <h1 className="text-danger p-5 text-center ">Box Office</h1>
       <div className="row">
         {isLoading && (
           <div className="d-flex justify-content-center ">
@@ -32,9 +55,51 @@ export default function BoxOffice() {
           </div>
         )}
         {isError && <p>Error fetching data</p>}
-
-        {allData.map((movie) => (
-          <div key={movie.id} className={`col-3 text-center py-5 pos ${Style.Scalling}`}>
+        <div className="d-flex justify-content-around align-items-center pt-5">
+          <nav aria-label="Page navigation example">
+            <ul className="pagination ">
+              <li className="page-item ">
+                <button
+                  onClick={Previous}
+                  className="page-link"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">«</span>
+                </button>
+              </li>
+              <li className="page-item">
+                <button onClick={PageOne} className="page-link">
+                  1
+                </button>
+              </li>
+              <li className="page-item">
+                <button onClick={PageTwo} className="page-link">
+                  2
+                </button>
+              </li>
+              <li className="page-item">
+                <button onClick={PageThree} className="page-link">
+                  3
+                </button>
+              </li>
+              <li className="page-item">
+                <button onClick={LastPage} className="page-link">
+                  {allData.total_pages}
+                </button>
+              </li>
+              <li className="page-item">
+                <button onClick={Next} className="page-link" aria-label="Next">
+                  <span aria-hidden="true">»</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        {allData?.results?.map((movie) => (
+          <div
+            key={movie.id}
+            className={`col-3 text-center py-5 pos ${Style.Scalling}`}
+          >
             <Link
               className={`${Style.Link}`}
               to={`/BoxOfficeDetails/${movie.id}`}
@@ -58,34 +123,42 @@ export default function BoxOffice() {
           </div>
         ))}
       </div>
-
-      <div className="d-flex justify-content-around align-items-center ">
-        <nav aria-label="Page navigation example ">
-          <ul className="pagination ">
-            <li className="page-item ">
-              <a className="page-link " href="#" aria-label="Previous">
+      <div className="d-flex justify-content-around align-items-center pt-5">
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className="page-item">
+              <button
+                onClick={Previous}
+                className="page-link"
+                aria-label="Previous"
+              >
                 <span aria-hidden="true">«</span>
-              </a>
+              </button>
             </li>
-            <li className="page-item ">
-              <a className="page-link" href="#">
+            <li className="page-item">
+              <button onClick={PageOne} className="page-link">
                 1
-              </a>
+              </button>
             </li>
-            <li className="page-item ">
-              <a className="page-link" href="#">
+            <li className="page-item">
+              <button onClick={PageTwo} className="page-link">
                 2
-              </a>
+              </button>
             </li>
-            <li className="page-item ">
-              <a className="page-link" href="#">
+            <li className="page-item">
+              <button onClick={PageThree} className="page-link">
                 3
-              </a>
+              </button>
             </li>
-            <li className="page-item ">
-              <a className="page-link" href="#" aria-label="Next">
+            <li className="page-item">
+              <button onClick={LastPage} className="page-link">
+                {allData.total_pages}
+              </button>
+            </li>
+            <li className="page-item">
+              <button onClick={Next} className="page-link" aria-label="Next">
                 <span aria-hidden="true">»</span>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>
