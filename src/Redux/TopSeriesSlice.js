@@ -3,7 +3,7 @@ import axios from "axios";
 ///////////////////First Phase CreateAsyncThunk API FUNCTION  //////////////////////////
 export const TopSeriesAPIFUNC = createAsyncThunk(
   "TopSeriesInitialState/GetTopSeries",
-  async function () {
+  async function (Paggination) {
     const response = await axios.get(
       `https://api.themoviedb.org/3/tv/top_rated?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&language=en-US&page=${Paggination}`
     );
@@ -11,7 +11,6 @@ export const TopSeriesAPIFUNC = createAsyncThunk(
     return response;
   }
 );
-let Paggination =1;
 //////////////////////Second Phase =>(Create Slice)<= AKA InitialState with the same name as above  //////////////////////////
 
 const TopSeriesSlice = createSlice({
@@ -19,7 +18,6 @@ const TopSeriesSlice = createSlice({
   initialState: {
     APIDATA: [],
     isLoading: true,
-    Paggination,
   },
 
   /// Third Phase =>(ExtraReducers)<= for Login Handling  ///////
@@ -32,9 +30,8 @@ const TopSeriesSlice = createSlice({
 
     builder.addCase(TopSeriesAPIFUNC.fulfilled, function (prevstate, Action) {
       prevstate.isLoading = false;
-      prevstate.APIDATA = Action.payload.data.results;
+      prevstate.APIDATA = Action.payload.data;
       console.log(Action.payload.data.results);
-      
     });
   },
 });
