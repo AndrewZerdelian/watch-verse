@@ -21,6 +21,7 @@ let BoxOfficeSlice = createSlice({
     allData: [],
     isLoading: true,
     isError: false,
+    
   },
 
   // will handle all states of the api such data , error, isloading
