@@ -16,6 +16,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import CommingSoonDetails from "./Components/CommingSoon/CommingSoonDetails/CommingSoonDetails";
 import Login from "./Components/Login/Login";
 import Registration from "./Components/Registration/Registration";
+import CoomingSoonQueryApiContextProvider from "./ReactQuery/CoomingSoonQueryApi";
 
 export default function App() {
   let Query = new QueryClient();
@@ -48,7 +49,9 @@ export default function App() {
         <Provider store={myStore}>
           <TVDiscuveryContextProvider>
             <MovieDiscuveryContext>
+              <CoomingSoonQueryApiContextProvider>
               <RouterProvider router={routers}></RouterProvider>
+              </CoomingSoonQueryApiContextProvider>
             </MovieDiscuveryContext>
           </TVDiscuveryContextProvider>
         </Provider>
