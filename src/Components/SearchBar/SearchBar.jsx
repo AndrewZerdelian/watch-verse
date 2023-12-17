@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Style from "./SearchBar.module.css";
 import { Link } from "react-router-dom";
@@ -6,40 +6,123 @@ import { Link } from "react-router-dom";
 export default function SearchBar() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
   const [Loading, SetLoading] = useState([]);
+  const [CurrentPage, SetCurrentPage] = useState(1);
+  const [SearchQueryValue, SetSearchQuery] = useState("");
+
   async function SearchQuery(query) {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&language=en-US&page=1`
+        `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&language=en-US&page=${CurrentPage}`
       );
-      console.log(response.data.results);
-      SetLoading(response?.data.results);
-      return response?.data.results;
+      SetLoading(response?.data);
+      console.log(response?.data);
+      return response?.data;
     } catch (error) {
       throw error;
     }
   }
 
   function handleChange(event) {
-    SearchQuery(event.target.value);
     event.preventDefault();
+    const query = event.target.value;
+    SetLoading([]);
+    SetSearchQuery(query);
+  }
+
+  useEffect(() => {
+    SearchQuery(SearchQueryValue);
+  }, [SearchQueryValue, CurrentPage]);
+
+  function Next() {
+    if (CurrentPage < Loading?.total_pages) {
+      SetCurrentPage(CurrentPage + 1);
+    }
+  }
+
+  function Previous() {
+    if (CurrentPage > 1) {
+      SetCurrentPage(CurrentPage - 1);
+    }
+  }
+
+  function PageOne() {
+    SetCurrentPage(1);
+  }
+
+  function PageTwo() {
+    SetCurrentPage(2);
+  }
+
+  function PageThree() {
+    SetCurrentPage(3);
+  }
+
+  function LastPage() {
+    if (Loading.total_pages) {
+      SetCurrentPage(Loading.total_pages);
+    }
   }
 
   return (
     <div className="p-5 container">
-      <form onSubmit={handleChange} className="d-flex container" role="search">
+      <form className="d-flex container" role="search">
         <input
           id="search"
           name="search"
           type="text"
           onChange={handleChange}
           className="form-control me-2"
-          placeholder="Search for Movies / Shows and Actors..."
+          placeholder="Search for Movies/Shows..."
           aria-label="search"
         />
       </form>
+      {SearchQueryValue && (
+        <div className="d-flex justify-content-around align-items-center pt-5">
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className="page-item ">
+                <button
+                  onClick={Previous}
+                  className="page-link"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">«</span>
+                </button>
+              </li>
+              <li className="page-item">
+                <button onClick={PageOne} className="page-link">
+                  1
+                </button>
+              </li>
+              <li className="page-item">
+                <button onClick={PageTwo} className="page-link">
+                  2
+                </button>
+              </li>
+              <li className="page-item">
+                <button onClick={PageThree} className="page-link">
+                  3
+                </button>
+              </li>
+              {Loading.total_pages && (
+                <li className="page-item">
+                  <button onClick={LastPage} className="page-link">
+                    {Loading.total_pages}
+                  </button>
+                </li>
+              )}
+              <li className="page-item">
+                <button onClick={Next} className="page-link" aria-label="Next">
+                  <span aria-hidden="true">»</span>
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
       <div className="container-fluid">
         <div className="row">
-          {Loading?.map(
+          {Loading?.results?.map(
             (search) =>
               search.poster_path && (
                 <div
@@ -97,119 +180,56 @@ export default function SearchBar() {
                 </div>
               )
           )}
+          {SearchQueryValue && (
+            <div className="d-flex justify-content-around align-items-center pt-5">
+              <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li className="page-item ">
+                    <button
+                      onClick={Previous}
+                      className="page-link"
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true">«</span>
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageOne} className="page-link">
+                      1
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageTwo} className="page-link">
+                      2
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button onClick={PageThree} className="page-link">
+                      3
+                    </button>
+                  </li>
+                  {Loading.total_pages && (
+                    <li className="page-item">
+                      <button onClick={LastPage} className="page-link">
+                        {Loading.total_pages}
+                      </button>
+                    </li>
+                  )}
+                  <li className="page-item">
+                    <button
+                      onClick={Next}
+                      className="page-link"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">»</span>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
-
-/**
- *         <button className="btn btn-outline-danger" type="submit">
-          Search
-        </button>
- */
-
-/**
- * 
-  async function SearchQuery(query) {
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&language=en-US&page=1`
-      );
-      //console.log(response);
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  //,isLoading, isError, isSuccess,  dataUpdatedAt
-  const { data } = useQuery({
-    queryKey: ["SearchAPI"],
-    queryFn: SearchQuery,
-  });
-  console.log(data?.data.results);
-
-  const [Searching, SetSearching] = useState("");
-  function handleChange(event) {
-    SetSearching(event.target.value);
-    SearchQuery(event.target.value);
-    event.preventDefault();
-  }
-
- */
-
-/**
- *       <div>
-        {isSuccess ? (
-          <div></div>
-        ) : (
-          <></>
-        )}
-      </div>
- */
-/**
- *   // Tomorow we will delete the SearchQuery from qoury folder and do it all here
-  // or all in just a normal function here we 5allas,,,
-  const [Searching, SetSearching] = useState("");
-  const [Loading, SetLoading] = useState(false);
-
-  function handleChange(event) {
-    SetSearching(event.target.value);
-    SearchQuery(event.target.value);
-    SetLoading(true);
-    event.preventDefault();
-    console.log(Searching);
-  }
-
-  //////////////////////QUERY //////////////////////////////
-  // isLoading, isFetching, isError, isSuccess,
-  const { data } = useQuery({
-    queryKey: ["query"],
-    queryFn: SearchQuery,
-  });
-  //isLoading, isFetching, isError,
-  console.log(data);
- */
-/**
- * import { useFormik } from "formik";
-import React, { useContext, useState } from "react";
-
-export default function SearchBar() {
-  //////////////////////SEARCH //////////////////////////////
-  const [Searching, SetSearching] = useState("");
-  const formik = useFormik({
-    initialValues: {
-      search: "",
-    },
-    onSubmit: (values) => {
-      SetSearching(values.target.values);
-      console.log(Searching);
-    },
-  });
-
-  return (
-    <div className="p-5 ">
-      <form
-        onSubmit={formik.handleSubmit}
-        className="d-flex container"
-        role="search"
-      >
-        <input
-          id="search"
-          name="search"
-          type="search"
-          onChange={formik.handleChange}
-          value={formik.values.search}
-          className="form-control me-2"
-          placeholder="Search for Movies/tvshows"
-          aria-label="search"
-        />
-        <button className="btn btn-outline-danger" type="submit">
-          Search
-        </button>
-      </form>
-    </div>
-  );
-}
-
- */
