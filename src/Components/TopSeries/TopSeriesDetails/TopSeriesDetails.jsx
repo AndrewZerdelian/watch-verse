@@ -25,14 +25,22 @@ export default function TopSeriesDetails() {
   ////////////////////////Series Trailers////////////////////
   const [TVSeriesTrailer, SetTVSeriesTrailer] = useState(false);
   const [videoId, setVideoId] = useState("");
-
+  const APIKEY = process.env.REACT_APP_API_KEY;
   async function SeriesTrailer() {
     SetTVSeriesTrailer(true);
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/tv/${Params.ID}/videos?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&language=en-US`
+        `https://api.themoviedb.org/3/tv/${Params.ID}/videos?${APIKEY}&language=en-US`
       );
       setVideoId(response.data.results[0].key);
+
+      
+      const trailers = response.data.results.filter(
+        (video) => video.type === "Trailer"
+      );
+      if (trailers.length > 0) {
+        setVideoId(trailers[0].key);
+      }
       console.log(response);
       return response;
     } catch (error) {

@@ -8,11 +8,11 @@ export default function SearchBar() {
   const [Loading, SetLoading] = useState([]);
   const [CurrentPage, SetCurrentPage] = useState(1);
   const [SearchQueryValue, SetSearchQuery] = useState("");
-
+  const APIKEY = process.env.REACT_APP_API_KEY;
   async function SearchQuery(query) {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?query=${query}&api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&language=en-US&page=${CurrentPage}`
+        `https://api.themoviedb.org/3/search/multi?query=${query}&${APIKEY}&include_adult=false&language=en-US&page=${CurrentPage}`
       );
       SetLoading(response?.data);
       console.log(response?.data);
