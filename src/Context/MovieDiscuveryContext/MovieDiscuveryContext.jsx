@@ -3,8 +3,9 @@ import React, { createContext, useState } from "react";
 
 export const MovieDiscuveryCont = createContext();
 export default function MovieDiscuveryContext({ children }) {
+  const APIKEY = process.env.REACT_APP_API_KEY;
   const DiscoverMoviesAPI =
-    "https://api.themoviedb.org/3/discover/movie?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
+    `https://api.themoviedb.org/3/discover/movie?${APIKEY}&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`;
 
   const [MappingDiscovery, setMappingDiscovery] = useState([]);
 

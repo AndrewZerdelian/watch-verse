@@ -3,11 +3,12 @@ import axios from "axios";
 
 // name of the slice then the discription then the api function,
 //can it hold try and catch methods...?
+const APIKEY = process.env.REACT_APP_API_KEY;
 export const BoxOfficeAPIFunction = createAsyncThunk(
   "BoxOfficeSlice/GETBoxOFFICEAPI",
   async function (page) {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&include_adult=false&include_video=true&language=en-US&page=${page}`
+      `https://api.themoviedb.org/3/movie/now_playing?${APIKEY}&include_adult=false&include_video=true&language=en-US&page=${page}`
     );
 
     console.log(response);

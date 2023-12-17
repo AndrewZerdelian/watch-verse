@@ -10,13 +10,11 @@ import axios from "axios";
 export default function BoxOfficeDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
 
-  //const TrailerPath = (`https://api.themoviedb.org/3/movie/1075794/videos?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&language=en-US`)
-
   const { APIDATA, isLoading } = useSelector((selector) => selector.BODetails);
 
   const Dispatch = useDispatch();
 
-  //console.log(APIDATA);
+  console.log(APIDATA);
 
   let Params = useParams();
 
@@ -27,23 +25,22 @@ export default function BoxOfficeDetails() {
   /////////////////////TRAILER///////////////////////////////////
   const [ShowTrailer, SetShowTrailer] = useState(false);
   const [videoId, setVideoId] = useState("");
-
+  const APIKEY = process.env.REACT_APP_API_KEY;
   async function MovieTrailer() {
     SetShowTrailer(true);
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${Params.ID}/videos?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&language=en-US`
+        `https://api.themoviedb.org/3/movie/${Params.ID}/videos?${APIKEY}&language=en-US`
       );
       setVideoId(response.data.results[0].key);
 
-      /**
-    * const trailers = response.data.results.filter(
-     (video) => video.site === "YouTube"
-   );
-   if (trailers.length > 0) {
-     setVideoId(trailers[0].key);
-   }
-    */
+      const trailers = response.data.results.filter(
+        (video) => video.type === "Trailer"
+      );
+      if (trailers.length > 0) {
+        setVideoId(trailers[0].key);
+      }
+
       console.log(response);
       return response;
     } catch (error) {

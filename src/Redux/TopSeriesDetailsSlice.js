@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+const APIKEY = process.env.REACT_APP_API_KEY;
 export const TopSeriesDetailsAPIFunc = createAsyncThunk(
   "TopSeriesDetails, TopSeriesDetailsAPI",
   async function (ID) {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/tv/${ID}?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&language=en-US`
+      `https://api.themoviedb.org/3/tv/${ID}?${APIKEY}&language=en-US`
     );
     console.log(response);
     return response;
