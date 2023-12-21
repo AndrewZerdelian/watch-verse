@@ -17,6 +17,7 @@ import CommingSoonDetails from "./Components/CommingSoon/CommingSoonDetails/Comm
 import Login from "./Components/Login/Login";
 import Registration from "./Components/Registration/Registration";
 import CoomingSoonQueryApiContextProvider from "./ReactQuery/CoomingSoonQueryApi";
+import FavouritesContextProvider from "./Context/FavouritesContext/FavouritesContext";
 
 export default function App() {
   let Query = new QueryClient();
@@ -44,18 +45,20 @@ export default function App() {
   ]);
 
   return (
-    <div>
-      <QueryClientProvider client={Query}>
-        <Provider store={myStore}>
-          <TVDiscuveryContextProvider>
-            <MovieDiscuveryContext>
-              <CoomingSoonQueryApiContextProvider>
-              <RouterProvider router={routers}></RouterProvider>
-              </CoomingSoonQueryApiContextProvider>
-            </MovieDiscuveryContext>
-          </TVDiscuveryContextProvider>
-        </Provider>
-      </QueryClientProvider>
-    </div>
+    <main>
+      <FavouritesContextProvider>
+        <QueryClientProvider client={Query}>
+          <Provider store={myStore}>
+            <TVDiscuveryContextProvider>
+              <MovieDiscuveryContext>
+                <CoomingSoonQueryApiContextProvider>
+                  <RouterProvider router={routers}></RouterProvider>
+                </CoomingSoonQueryApiContextProvider>
+              </MovieDiscuveryContext>
+            </TVDiscuveryContextProvider>
+          </Provider>
+        </QueryClientProvider>
+      </FavouritesContextProvider>
+    </main>
   );
 }
