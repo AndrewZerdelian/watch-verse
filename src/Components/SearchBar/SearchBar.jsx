@@ -83,36 +83,57 @@ export default function SearchBar() {
               <li className="page-item ">
                 <button
                   onClick={Previous}
-                  className="page-link"
+                  className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
                   aria-label="Previous"
                 >
                   <span aria-hidden="true">«</span>
                 </button>
               </li>
               <li className="page-item">
-                <button onClick={PageOne} className="page-link">
+                <button
+                  onClick={PageOne}
+                  className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                >
                   1
                 </button>
               </li>
               <li className="page-item">
-                <button onClick={PageTwo} className="page-link">
+                <button
+                  onClick={PageTwo}
+                  className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                >
                   2
                 </button>
               </li>
               <li className="page-item">
-                <button onClick={PageThree} className="page-link">
+                <button
+                  onClick={PageThree}
+                  className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                >
                   3
                 </button>
               </li>
+              {Loading.page > 3 && (
+                <button className="page-link bg-black text-danger fw-bolder border-dark focus-ring focus-ring-danger">
+                  {Loading.page}
+                </button>
+              )}
               {Loading.total_pages && (
                 <li className="page-item">
-                  <button onClick={LastPage} className="page-link">
+                  <button
+                    onClick={LastPage}
+                    className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                  >
                     {Loading.total_pages}
                   </button>
                 </li>
               )}
               <li className="page-item">
-                <button onClick={Next} className="page-link" aria-label="Next">
+                <button
+                  onClick={Next}
+                  className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                  aria-label="Next"
+                >
                   <span aria-hidden="true">»</span>
                 </button>
               </li>
@@ -187,30 +208,47 @@ export default function SearchBar() {
                   <li className="page-item ">
                     <button
                       onClick={Previous}
-                      className="page-link"
+                      className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
                       aria-label="Previous"
                     >
                       <span aria-hidden="true">«</span>
                     </button>
                   </li>
                   <li className="page-item">
-                    <button onClick={PageOne} className="page-link">
+                    <button
+                      onClick={PageOne}
+                      className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                    >
                       1
                     </button>
                   </li>
                   <li className="page-item">
-                    <button onClick={PageTwo} className="page-link">
+                    <button
+                      onClick={PageTwo}
+                      className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                    >
                       2
                     </button>
                   </li>
                   <li className="page-item">
-                    <button onClick={PageThree} className="page-link">
+                    <button
+                      onClick={PageThree}
+                      className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                    >
                       3
                     </button>
                   </li>
+                  {Loading.page > 3 && (
+                    <button className="page-link bg-black text-danger fw-bolder border-dark focus-ring focus-ring-danger">
+                      {Loading.page}
+                    </button>
+                  )}
                   {Loading.total_pages && (
                     <li className="page-item">
-                      <button onClick={LastPage} className="page-link">
+                      <button
+                        onClick={LastPage}
+                        className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
+                      >
                         {Loading.total_pages}
                       </button>
                     </li>
@@ -218,7 +256,7 @@ export default function SearchBar() {
                   <li className="page-item">
                     <button
                       onClick={Next}
-                      className="page-link"
+                      className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
                       aria-label="Next"
                     >
                       <span aria-hidden="true">»</span>

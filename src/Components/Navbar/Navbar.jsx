@@ -27,7 +27,11 @@ export default function Navbar() {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
                 <NavLink
-                  className="nav-link text-danger fw-bold"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link fw-bold text-danger text-decoration-underline "
+                      : "nav-link text-danger fw-bold"
+                  }
                   to="BoxOffice"
                 >
                   Box Office
@@ -35,7 +39,11 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link text-danger fw-bold"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link fw-bold text-danger text-decoration-underline "
+                      : "nav-link text-danger fw-bold"
+                  }
                   to="TopSeries"
                 >
                   Top Series
@@ -43,7 +51,11 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link text-danger fw-bold"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link fw-bold text-danger text-decoration-underline "
+                      : "nav-link text-danger fw-bold"
+                  }
                   to="CommingSoon"
                 >
                   Comming Soon
@@ -51,14 +63,25 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className="nav-link text-danger fw-bold"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link fw-bold text-danger text-decoration-underline "
+                      : "nav-link text-danger fw-bold"
+                  }
                   to="Favourites"
                 >
                   Favourites
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link text-danger fw-bold" to="Login">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link fw-bold text-danger text-decoration-underline "
+                      : "nav-link text-danger fw-bold"
+                  }
+                  to="Login"
+                >
                   sign in
                 </NavLink>
               </li>
