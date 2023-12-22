@@ -22,21 +22,30 @@ export default function BoxOfficeDetails() {
     Dispatch(BoxOfficeDetailsAPIFUNC(Params.ID));
   }, []);
 
-  /////////////////////TRAILER///////////////////////////////////
-  const [ShowTrailer, SetShowTrailer] = useState(false);
   const [videoId, setVideoId] = useState("");
+  const [youtubePlayer, setYoutubePlayer] = useState(null); // State to store the YouTube player data
   const APIKEY = process.env.REACT_APP_API_KEY;
+
+  function _onReady(event) {
+    setYoutubePlayer(event.target); // Store the YouTube player data
+  }
+
+  function closeVideo() {
+    if (youtubePlayer) {
+      youtubePlayer.stopVideo(); // Stop the video
+    }
+  }
+
   async function MovieTrailer() {
-    SetShowTrailer(true);
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${Params.ID}/videos?${APIKEY}&language=en-US`
       );
-      setVideoId(response.data.results[0].key);
 
       const trailers = response.data.results.filter(
         (video) => video.type === "Trailer"
       );
+
       if (trailers.length > 0) {
         setVideoId(trailers[0].key);
       }
@@ -48,8 +57,6 @@ export default function BoxOfficeDetails() {
     }
   }
 
-  //useEffect(()=> {MovieTrailer()},[])
-
   const opts = {
     height: "500",
     width: "100%",
@@ -57,8 +64,6 @@ export default function BoxOfficeDetails() {
       autoplay: 1,
     },
   };
-
-  //////////////////////////////////////////////////////
 
   return (
     <div className={`${Styling.main} text-white`}>
@@ -109,7 +114,13 @@ export default function BoxOfficeDetails() {
                 <button className="btn btn-danger me-5">
                   add to Favourites
                 </button>
-                <button onClick={MovieTrailer} className="btn btn-danger me-5 ">
+                <button
+                  onClick={MovieTrailer}
+                  className="btn btn-danger me-5 "
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
                   Watch Trailer
                 </button>
               </div>
@@ -117,13 +128,69 @@ export default function BoxOfficeDetails() {
           </div>
         </div>
       )}
-      {ShowTrailer ? (
-        <div className="container vh-75">
-          <YouTube videoId={videoId} opts={opts} />
+      <div
+        className="modal fade bg-black"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+          <div className="modal-content bg-black">
+            <button
+              type="button"
+              className="btn-close btn btn-danger ms-auto"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              style={{ backgroundColor: "red", border: "none" }}
+              onClick={closeVideo} // Call closeVideo when the close button is clicked
+            ></button>
+
+            <div className="modal-body ">
+              <div className="container vh-75">
+                <YouTube videoId={videoId} opts={opts} onReady={_onReady} />
+              </div>
+            </div>
+          </div>
         </div>
-      ) : (
-        <></>
-      )}
+      </div>
     </div>
   );
 }
+
+/**
+ * {ShowTrailer ? (
+                <div className="container vh-75">
+                  <YouTube videoId={videoId} opts={opts} />
+                </div>
+              ) : (
+                <></>
+              )}
+ */
+/**
+ * <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Launch demo modal
+      </button>
+
+      <div
+        class="modal fade bg-black"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content bg-dark">
+            <div class="modal-header"></div>
+            <div class="modal-body">...</div>
+          </div>
+        </div>
+      </div>
+ */
