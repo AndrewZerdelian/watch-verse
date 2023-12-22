@@ -95,9 +95,9 @@ export default function CommingSoon() {
                       3
                     </button>
                   </li>
-                  {data.page > 3 && (
+                  {data?.page > 3 && (
                     <button className="page-link bg-black text-danger fw-bolder border-dark focus-ring focus-ring-danger">
-                      {data.page}
+                      {data?.page}
                     </button>
                   )}
                   <li className="page-item">
@@ -181,9 +181,9 @@ export default function CommingSoon() {
                   3
                 </button>
               </li>
-              {data.page > 3 && (
+              {data?.page > 3 && (
                 <button className="page-link bg-black text-danger fw-bolder border-dark focus-ring focus-ring-danger">
-                  {data.page}
+                  {data?.page}
                 </button>
               )}
               <li className="page-item">

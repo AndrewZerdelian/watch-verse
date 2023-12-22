@@ -141,12 +141,14 @@ export default function BoxOfficeDetails() {
           <div className="modal-content bg-black">
             <button
               type="button"
-              className="btn-close btn btn-danger ms-auto"
+              className="btn btn-dark ms-auto text-danger fw-bolder"
               data-bs-dismiss="modal"
               aria-label="Close"
-              style={{ backgroundColor: "red", border: "none" }}
+              style={{ Color: "red", border: "none" }}
               onClick={closeVideo} // Call closeVideo when the close button is clicked
-            ></button>
+            >
+              X
+            </button>
 
             <div className="modal-body ">
               <div className="container vh-75">
@@ -159,38 +161,3 @@ export default function BoxOfficeDetails() {
     </div>
   );
 }
-
-/**
- * {ShowTrailer ? (
-                <div className="container vh-75">
-                  <YouTube videoId={videoId} opts={opts} />
-                </div>
-              ) : (
-                <></>
-              )}
- */
-/**
- * <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Launch demo modal
-      </button>
-
-      <div
-        class="modal fade bg-black"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content bg-dark">
-            <div class="modal-header"></div>
-            <div class="modal-body">...</div>
-          </div>
-        </div>
-      </div>
- */

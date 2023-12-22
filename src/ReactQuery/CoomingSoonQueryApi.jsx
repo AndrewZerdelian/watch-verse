@@ -11,10 +11,11 @@ export default function CoomingSoonQueryApiContextProvider({ children }) {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/upcoming?${APIKEY}&include_adult=true&include_video=true&language=en-US&page=${page}`
       );
-      return response.data; // Assuming you want to return the data property from the response
+      console.log(response);
+      return response.data;
     } catch (error) {
       console.error(error);
-      throw error; // Re-throw the error to be caught by React Query
+      throw error;
     }
   }
 

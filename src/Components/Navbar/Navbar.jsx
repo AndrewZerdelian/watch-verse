@@ -75,14 +75,10 @@ export default function Navbar() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "nav-link fw-bold text-danger text-decoration-underline "
-                      : "nav-link text-danger fw-bold"
-                  }
-                  to="Login"
+                  className={"nav-link text-danger fw-bold"}
+                  //to="Login"
                 >
-                  sign in
+                  Login
                 </NavLink>
               </li>
               <li className="nav-item dropdown">
