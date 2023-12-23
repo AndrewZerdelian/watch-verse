@@ -15,7 +15,7 @@ export default function SearchBar() {
         `https://api.themoviedb.org/3/search/multi?query=${query}&${APIKEY}&include_adult=false&language=en-US&page=${CurrentPage}`
       );
       SetLoading(response?.data);
-      console.log(response?.data);
+      //console.log(response?.data);
       return response?.data;
     } catch (error) {
       throw error;
