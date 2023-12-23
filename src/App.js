@@ -18,6 +18,8 @@ import Login from "./Components/Login/Login";
 import Registration from "./Components/Registration/Registration";
 import CoomingSoonQueryApiContextProvider from "./ReactQuery/CoomingSoonQueryApi";
 import FavouritesContextProvider from "./Context/FavouritesContext/FavouritesContext";
+import TokenContextProvider from "./Context/LoginContext/TokenContext";
+import AccountContextProvider from "./Context/AccountContext/AccountContext";
 
 export default function App() {
   let Query = new QueryClient();
@@ -46,19 +48,23 @@ export default function App() {
 
   return (
     <main>
-      <FavouritesContextProvider>
-        <QueryClientProvider client={Query}>
-          <Provider store={myStore}>
-            <TVDiscuveryContextProvider>
-              <MovieDiscuveryContext>
-                <CoomingSoonQueryApiContextProvider>
-                  <RouterProvider router={routers}></RouterProvider>
-                </CoomingSoonQueryApiContextProvider>
-              </MovieDiscuveryContext>
-            </TVDiscuveryContextProvider>
-          </Provider>
-        </QueryClientProvider>
-      </FavouritesContextProvider>
+      <AccountContextProvider>
+        <TokenContextProvider>
+          <FavouritesContextProvider>
+            <QueryClientProvider client={Query}>
+              <Provider store={myStore}>
+                <TVDiscuveryContextProvider>
+                  <MovieDiscuveryContext>
+                    <CoomingSoonQueryApiContextProvider>
+                      <RouterProvider router={routers}></RouterProvider>
+                    </CoomingSoonQueryApiContextProvider>
+                  </MovieDiscuveryContext>
+                </TVDiscuveryContextProvider>
+              </Provider>
+            </QueryClientProvider>
+          </FavouritesContextProvider>
+        </TokenContextProvider>
+      </AccountContextProvider>
     </main>
   );
 }

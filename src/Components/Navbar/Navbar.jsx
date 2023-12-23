@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Login from "../Login/Login";
 
 export default function Navbar() {
   return (
@@ -74,16 +75,14 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "nav-link fw-bold text-danger text-decoration-underline "
-                      : "nav-link text-danger fw-bold"
-                  }
-                  to="Login"
+                <button
+                  className={"nav-link text-danger fw-bold"}
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
                 >
-                  sign in
-                </NavLink>
+                  Login
+                </button>
+                <Login />
               </li>
               <li className="nav-item dropdown">
                 <NavLink
@@ -97,31 +96,20 @@ export default function Navbar() {
                 </NavLink>
                 <ul className="dropdown-menu dropdown-menu-end text-danger bg-dark">
                   <li>
-                    <NavLink
-                      to="Registration"
-                      className="dropdown-item text-danger fw-bold bg-dark"
-                    >
-                      Creating new account
-                    </NavLink>
-                  </li>
-                  <li>
                     <a
                       className="dropdown-item text-danger fw-bold bg-dark"
-                      href="#"
+                      href="https://www.themoviedb.org/signup"
                     >
-                      Another action
+                      Creating new account
                     </a>
+                  </li>
+                  <li>
+                    <button className="dropdown-item text-danger fw-bold bg-dark">
+                      Logout
+                    </button>
                   </li>
                   <li>
                     <hr className="dropdown-divider " />
-                  </li>
-                  <li>
-                    <a
-                      className="dropdown-item text-danger fw-bold bg-dark"
-                      href="#"
-                    >
-                      Something else here
-                    </a>
                   </li>
                 </ul>
               </li>
