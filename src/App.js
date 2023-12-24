@@ -48,8 +48,8 @@ export default function App() {
 
   return (
     <main>
-      <AccountContextProvider>
-        <TokenContextProvider>
+      <TokenContextProvider>
+        <AccountContextProvider>
           <FavouritesContextProvider>
             <QueryClientProvider client={Query}>
               <Provider store={myStore}>
@@ -63,8 +63,8 @@ export default function App() {
               </Provider>
             </QueryClientProvider>
           </FavouritesContextProvider>
-        </TokenContextProvider>
-      </AccountContextProvider>
+        </AccountContextProvider>
+      </TokenContextProvider>
     </main>
   );
 }

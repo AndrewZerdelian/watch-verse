@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { AccountCont } from "../../Context/AccountContext/AccountContext";
-import { TokenCont } from "../../Context/LoginContext/TokenContext";
+//import { TokenCont } from "../../Context/LoginContext/TokenContext";
 import { useFormik } from "formik";
 
 export default function Login() {
   const { POSTAccountDetails } = useContext(AccountCont);
-  const { GetToken } = useContext(TokenCont);
+ // const { GetToken } = useContext(TokenCont);
   const Form = useFormik({
     initialValues: {
       username: "",
@@ -14,6 +14,7 @@ export default function Login() {
 
     onSubmit: POSTAccountDetails,
   });
+  // onClick={GetToken}
   return (
     <div
       className="modal fade"
@@ -62,11 +63,7 @@ export default function Login() {
               />
             </div>
             <div className="d-flex justify-content-between">
-              <button
-                onClick={GetToken}
-                type="submit"
-                className="btn btn-danger"
-              >
+              <button type="submit" className="btn btn-danger">
                 Submit
               </button>
               <a

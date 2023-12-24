@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { createContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { TokenCont } from "../LoginContext/TokenContext";
 
 export const AccountCont = createContext();
 const APIKEY = process.env.REACT_APP_API_KEY;
 
 export default function AccountContextProvider({ children }) {
+  const { LocalStorage } = useContext(TokenCont);
   async function POSTAccountDetails({ username, password }) {
     try {
       const response = await axios.post(
@@ -12,10 +14,16 @@ export default function AccountContextProvider({ children }) {
         {
           username,
           password,
-          request_token: localStorage.getItem("request_token"),
+          request_token: LocalStorage,
         }
       );
-      console.log(response);
+      console.log(response.data);
+      if (response?.data?.success === true) {
+        setTimeout(() => {
+          SesionID();
+        }, 2000);
+      }
+
       return response;
     } catch (error) {
       console.log(error);
@@ -26,8 +34,30 @@ export default function AccountContextProvider({ children }) {
     /// this was for testing as well as the data above and its working
   }, [POSTAccountDetails]);
 
+  ////////////////////////////Session ID /////////////////////////
+  const [Session_id, SETSession_id] = useState("");
+  async function SesionID() {
+    try {
+      const response = await axios.post(
+        `https://api.themoviedb.org/3/authentication/session/new?${APIKEY}&`,
+        {
+          request_token:LocalStorage,
+        }
+      );
+      console.log(response.data);
+      localStorage.setItem("session_id",response?.data?.session_id)
+      SETSession_id(response?.data?.session_id);
+      
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <AccountCont.Provider value={{ POSTAccountDetails }}>
+    <AccountCont.Provider
+      value={{ POSTAccountDetails, Session_id, SETSession_id }}
+    >
       {children}
     </AccountCont.Provider>
   );
@@ -45,3 +75,17 @@ export default function AccountContextProvider({ children }) {
   password: 'test123',
   request_token: '1531f1a558c8357ce8990cf887ff196e8f5402ec'
          */
+
+/**
+   * if (response.data.success === true) {
+        const response = await axios.post(
+          `https://api.themoviedb.org/3/authentication/session/new?${APIKEY}&`,
+          {
+            request_token: localStorage?.getItem("request_token"),
+          }
+        );
+        return response;
+      } else {
+        console.log("Session id not found ? ");
+      }
+   */

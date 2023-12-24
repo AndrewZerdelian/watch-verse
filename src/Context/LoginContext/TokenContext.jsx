@@ -21,7 +21,9 @@ export default function TokenContextProvider({ children }) {
         alert.log("TOKEN ERROR");
       }
       return response;
-    } catch (error) {}
+    } catch (error) {
+      alert.log("Token ERROR", error);
+    }
   }
   useEffect(() => {}, [GetToken]);
   return (
