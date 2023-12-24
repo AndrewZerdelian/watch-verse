@@ -1,8 +1,77 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
+import axios from "axios";
+import { AccountCont } from "../../Context/AccountContext/AccountContext";
+import { TokenCont } from "../../Context/LoginContext/TokenContext";
 
 export default function Navbar() {
+  const { Session_id } = useContext(AccountCont);
+  const { GetToken } = useContext(TokenCont);
+  const NavigatetoHome = useNavigate();
+  async function Logout() {
+    try {
+      if (!Session_id) {
+        console.error("Session ID not found in localStorage");
+        return;
+      }
+      await axios.delete(
+        `https://api.themoviedb.org/3/authentication/session?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&`,
+        {
+          data: {
+            session_id: Session_id,
+          },
+        }
+      );
+
+      // Remove tokens from localStorage
+      localStorage.removeItem("request_token");
+      localStorage.removeItem("session_id");
+
+      console.log("Successfully logged out");
+      NavigatetoHome("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  /**  async function Logout() {
+    try {
+      await axios.delete(
+        `https://api.themoviedb.org/3/authentication/session?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&`,
+        {
+          session_id:"dd223fa1e7c8af841225681bc93a7d8aae5f937e",
+        }
+      );
+      // Remove tokens from localStorage
+      localStorage.removeItem("request_token");
+      localStorage.removeItem("session_id");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+   */
+
+  /**
+   *   
+  async function Logout() {
+    try {
+      const response = await axios.delete(
+        `https://api.themoviedb.org/3/authentication/session?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&`,
+        {
+          session_id: localStorage.removeItem("session_id"),
+          //session_id:Session_id,
+          //session_id:localStorage.getItem("session_id"),
+          //session_id: localStorage.removeItem("request_token"),
+        }
+      );
+      //SetLocalStorage(null);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+   */
   return (
     <div>
       <nav className="navbar navbar-expand-lg ">
@@ -79,6 +148,7 @@ export default function Navbar() {
                   className={"nav-link text-danger fw-bold"}
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
+                  onClick={GetToken}
                 >
                   Login
                 </button>
@@ -104,7 +174,10 @@ export default function Navbar() {
                     </a>
                   </li>
                   <li>
-                    <button className="dropdown-item text-danger fw-bold bg-dark">
+                    <button
+                      onClick={Logout}
+                      className="dropdown-item text-danger fw-bold bg-dark"
+                    >
                       Logout
                     </button>
                   </li>
