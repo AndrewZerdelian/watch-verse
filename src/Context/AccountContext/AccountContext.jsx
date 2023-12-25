@@ -17,7 +17,7 @@ export default function AccountContextProvider({ children }) {
           request_token: LocalStorage,
         }
       );
-      console.log(response.data);
+      console.log(response);
       if (response?.data?.success === true) {
         setTimeout(() => {
           SesionID();
@@ -41,19 +41,37 @@ export default function AccountContextProvider({ children }) {
       const response = await axios.post(
         `https://api.themoviedb.org/3/authentication/session/new?${APIKEY}&`,
         {
-          request_token:LocalStorage,
+          request_token: LocalStorage,
         }
       );
-      console.log(response.data);
-      localStorage.setItem("session_id",response?.data?.session_id)
+      console.log(response);
+      localStorage.setItem("session_id", response?.data?.session_id);
       SETSession_id(response?.data?.session_id);
-      
+      //console.log(localStorage.getItem("session_id"));
+      /////////////////////////USER ID ////////////////////////////
+      if (response?.data?.session_id) {
+        try {
+          const response = await axios.get(
+            `https://api.themoviedb.org/3/account?${APIKEY}&session_id=${localStorage.getItem(
+              "session_id"
+            )}`
+          );
+          console.log(response);
+          console.log(response.data.id);
+          localStorage.setItem("account_id", response.data.id);
+          return response;
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log("ERROR IN USER ID ");
+      }
+
       return response;
     } catch (error) {
       console.log(error);
     }
   }
-
   return (
     <AccountCont.Provider
       value={{ POSTAccountDetails, Session_id, SETSession_id }}
