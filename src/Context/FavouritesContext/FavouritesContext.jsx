@@ -4,37 +4,20 @@ import React, { createContext, useState } from "react";
 export const FavouritesContext = createContext();
 
 export default function FavouritesContextProvider({ children }) {
-
-function test(){
-const options = {
-    method: 'GET',
-    url: 'https://api.themoviedb.org/3/account/20227834/favorite/movies',
-    params: {language: 'en-US', page: '1', sort_by: 'created_at.asc'},
-    headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZDdiMjRkZmU5MGNiOTJiYWIyZjQyMDI2ZGRmOGRhNyIsInN1YiI6IjY0YzY0NTU1Y2FkYjZiMDBhYzY2MGI4NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qQtJ_EechHLDtkmDGhavEXqInLrEpa57XMwUVmQLwok'
-    }
-  };
-  
-  axios
-    .request(options)
-    .then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}
+  ////////////////////will be using it in redux instead////////////////////
+  async function FavouritesMovies() {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/account/{account_id}/favorite/movies?account_id=20227834&session_id=f97969f60b8f206538c79af51ca0dfd414cda374&api_key=2d7b24dfe90cb92bab2f42026ddf8da7`
+    );
+    console.log(response);
+    return response;
+  }
   return (
-    <FavouritesContext.Provider
-      value={{test}}
-    >
+    <FavouritesContext.Provider value={{ FavouritesMovies }}>
       {children}
     </FavouritesContext.Provider>
   );
 }
-
-
 
 /**  const [Favourites, setFavourites] = useState([]);
   const APIKEY = process.env.REACT_APP_API_KEY;
@@ -50,5 +33,4 @@ const options = {
     }
   } */
 
-
-  //{ GetFavouritesContext, Favourites, setFavourites }
+//{ GetFavouritesContext, Favourites, setFavourites }

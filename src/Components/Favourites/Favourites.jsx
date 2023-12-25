@@ -1,45 +1,59 @@
-import React, { useContext, useEffect } from "react";
-import { FavouritesContext } from "../../Context/FavouritesContext/FavouritesContext";
-
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FavouritesAPI } from "../../Redux/FavouritesSlice";
+import { Link } from "react-router-dom";
+import Style from "./Favourites.module.css";
 export default function Favourites() {
-  const { GetFavouritesContext } = useContext(FavouritesContext);
-
-  async function DiscplayingFavouritesFromContext() {
-    // const response = await GetFavouritesContext();
-    // console.log(response);
-    // return response;
-  }
+  const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
+  const Dispatch = useDispatch();
+  const { APIDATA } = useSelector((store) => store.Favourits);
+  console.log(APIDATA);
 
   useEffect(() => {
-    DiscplayingFavouritesFromContext();
+    Dispatch(FavouritesAPI());
   }, []);
   return (
-    <>
-      <h1 className="text-center p-5 text-danger">Favourites List</h1>
+    <div>
+      <h1 className="text-danger text-center p-5 ">Favourites</h1>
+      <div>
+        <div className="d-flex justify-content-center">
+          <button className="btn btn-outline-danger">
+            <h3 className="text-danger text-center">Movies</h3>
+          </button>
+        </div>
 
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Launch demo modal
-      </button>
-
-      <div
-        class="modal fade bg-black"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content bg-dark">
-            <div class="modal-header"></div>
-            <div class="modal-body">...</div>
+        <div className="container-fluid">
+          <div className="row">
+            {APIDATA?.results?.map((movie) => (
+              <div
+                key={movie.id}
+                className={`col-3 text-center  pos ${Style.Scalling}`}
+              >
+                <Link
+                  className={`${Style.Link}`}
+                  to={`/BoxOfficeDetails/${movie.id}`}
+                >
+                  <img
+                    src={ImagesBasicPath + movie.poster_path}
+                    alt="Movies"
+                    className="w-75"
+                  />
+                  <h3 className="text-white">
+                    {movie.title.split(" ").slice(0, 4).join(" ")}
+                  </h3>
+                  <div className="d-flex justify-content-around align-items-center my-3">
+                    <div className="text-white gut-5">
+                      {movie.vote_average.toFixed(1)}
+                      <i className="fa-sharp fa-solid fa-star text-danger"></i>
+                    </div>
+                    <div className="text-white">{movie.release_date}</div>
+                  </div>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

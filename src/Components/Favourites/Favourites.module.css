@@ -1,0 +1,12 @@
+.Link{
+    
+    text-decoration: none;
+  }
+
+
+  .Scalling {
+    transition: transform 0.4s;
+  }
+  .Scalling:hover {
+    transform: scale(1.1);
+  }
