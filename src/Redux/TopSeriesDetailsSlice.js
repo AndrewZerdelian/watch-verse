@@ -8,7 +8,7 @@ export const TopSeriesDetailsAPIFunc = createAsyncThunk(
       `https://api.themoviedb.org/3/tv/${ID}?${APIKEY}&language=en-US`
     );
     console.log(response);
-    return response;
+    return response?.data;
   }
 );
 
@@ -28,12 +28,10 @@ const TopSeriesDetailsSlice = createSlice({
       TopSeriesDetailsAPIFunc.fulfilled,
       function (prevstate, Action) {
         prevstate.isLoading = false;
-        prevstate.APIDATA = Action.payload.data;
+        prevstate.APIDATA = Action.payload;
       }
     );
   },
 });
-
-
 
 export const TopSeriesDetailsReduser = TopSeriesDetailsSlice.reducer;
