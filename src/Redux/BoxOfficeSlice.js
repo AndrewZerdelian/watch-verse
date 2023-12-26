@@ -12,7 +12,8 @@ export const BoxOfficeAPIFunction = createAsyncThunk(
     );
 
     console.log(response);
-    return response;
+    return response.data;
+    //the non serlizible fix
   }
 );
 
@@ -22,7 +23,6 @@ let BoxOfficeSlice = createSlice({
     allData: [],
     isLoading: true,
     isError: false,
-
   },
 
   // will handle all states of the api such data , error, isloading
@@ -46,9 +46,9 @@ let BoxOfficeSlice = createSlice({
         PrevState.isLoading = false;
         PrevState.isError = false;
 
-       // console.log("inside the function ", Action);
+        // console.log("inside the function ", Action);
 
-        PrevState.allData = Action.payload.data;
+        PrevState.allData = Action.payload;
         console.log(PrevState.allData);
       }
     );

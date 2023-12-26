@@ -8,7 +8,7 @@ export const BoxOfficeDetailsAPIFUNC = createAsyncThunk(
       `https://api.themoviedb.org/3/movie/${ID}?${APIKEY}&language=en-US`
     );
     //console.log(response);
-    return response;
+    return response.data;
   }
 );
 
@@ -31,7 +31,7 @@ const BoxOfficeDetailsSlice = createSlice({
       BoxOfficeDetailsAPIFUNC.fulfilled,
       function (prevstate, Action) {
         prevstate.isLoading = false;
-        prevstate.APIDATA = Action.payload.data;
+        prevstate.APIDATA = Action.payload;
         //console.log(Action.payload.data);
       }
     );

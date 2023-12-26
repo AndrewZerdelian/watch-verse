@@ -4,13 +4,13 @@ import axios from "axios";
 const APIKEY = process.env.REACT_APP_API_KEY;
 const AccountID = localStorage.getItem("account_id");
 const SessionID = localStorage.getItem("session_id");
-console.log(SessionID);
+//console.log(SessionID);
 export const FavouritesAPI = createAsyncThunk(
   "FavouritesSlice/DeleteFavourites",
-  async function () {
+  async function (page) {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/account/${AccountID}/favorite/movies?&session_id=${SessionID}&${APIKEY}`
+        `https://api.themoviedb.org/3/account/${AccountID}/favorite/movies?&session_id=${SessionID}&${APIKEY}&${page}`
       );
       console.log(response);
       return response.data;

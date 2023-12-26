@@ -11,7 +11,7 @@ export default function Navbar() {
   const NavigatetoHome = useNavigate();
   async function Logout() {
     try {
-      if (!Session_id) {
+      if (!localStorage.getItem("session_id")) {
         console.error("Session ID not found in localStorage");
         return;
       }
@@ -25,9 +25,9 @@ export default function Navbar() {
       );
 
       // Remove tokens from localStorage
-      localStorage.removeItem("request_token");
-      localStorage.removeItem("session_id");
-
+      //localStorage.removeItem("request_token");
+      //localStorage.removeItem("session_id");
+      localStorage.clear();
       console.log("Successfully logged out");
       NavigatetoHome("/");
     } catch (error) {

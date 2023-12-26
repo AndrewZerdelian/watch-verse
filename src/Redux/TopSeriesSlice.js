@@ -9,7 +9,7 @@ export const TopSeriesAPIFUNC = createAsyncThunk(
       `https://api.themoviedb.org/3/tv/top_rated?${APIKEY}&include_adult=false&language=en-US&page=${Paggination}`
     );
     console.log(response);
-    return response;
+    return response.data;
   }
 );
 //////////////////////Second Phase =>(Create Slice)<= AKA InitialState with the same name as above  //////////////////////////
@@ -31,8 +31,8 @@ const TopSeriesSlice = createSlice({
 
     builder.addCase(TopSeriesAPIFUNC.fulfilled, function (prevstate, Action) {
       prevstate.isLoading = false;
-      prevstate.APIDATA = Action.payload.data;
-      console.log(Action.payload.data.results);
+      prevstate.APIDATA = Action.payload;
+      console.log(Action.payload);
     });
   },
 });

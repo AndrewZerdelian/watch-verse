@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import Styling from "./BoxOfficeDetails.module.css";
 import YouTube from "react-youtube";
 import axios from "axios";
+import { AddToFavouritesPostAPI } from "../../../Redux/AddToFavourites";
+
 
 export default function BoxOfficeDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
@@ -14,10 +16,24 @@ export default function BoxOfficeDetails() {
 
   const Dispatch = useDispatch();
 
-  console.log(APIDATA);
+  console.log(APIDATA.id);
 
   let Params = useParams();
 
+    /////////////////////////ADD MOVIES TO FAVOURITES //////////////////////////
+  
+
+    async function AddMovietoFavourties(ID) {
+      try {
+        const response =  await Dispatch(AddToFavouritesPostAPI(ID))
+        console.log(response);
+        return response
+        
+      } catch (error) {
+        console.error("Error adding movie to favourites:", error);
+      }
+    }
+//////////////////////////////////////
   useEffect(() => {
     Dispatch(BoxOfficeDetailsAPIFUNC(Params.ID));
   }, []);
@@ -65,6 +81,7 @@ export default function BoxOfficeDetails() {
     },
   };
 
+  
   return (
     <div className={`${Styling.main} text-white`}>
       {isLoading ? (
@@ -111,7 +128,10 @@ export default function BoxOfficeDetails() {
                 ))}
               </div>
               <div className={`${Styling.Important}`}>
-                <button className="btn btn-danger me-5">
+                <button
+                  onClick={ ()=> AddMovietoFavourties(APIDATA.id)}
+                  className="btn btn-danger me-5"
+                >
                   add to Favourites
                 </button>
                 <button
