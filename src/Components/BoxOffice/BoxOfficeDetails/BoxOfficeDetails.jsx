@@ -21,15 +21,15 @@ export default function BoxOfficeDetails() {
 
   /////////////////////////ADD MOVIES TO FAVOURITES //////////////////////////
 
-  async function AddMovietoFavourties(media_id, media_type) {
+  async function AddMovietoFavourties(media_id, media_type, favorite) {
     try {
       const response = await Dispatch(
-        AddToFavouritesPostAPI({ media_id, media_type })
+        AddToFavouritesPostAPI({ media_id, media_type, favorite })
       );
       console.log(response);
       return response;
     } catch (error) {
-      console.error("Error adding movie to favourites:", error);
+      console.error(error);
     }
   }
   //////////////////////////////////////
@@ -127,7 +127,9 @@ export default function BoxOfficeDetails() {
               </div>
               <div className={`${Styling.Important}`}>
                 <button
-                  onClick={() => AddMovietoFavourties(APIDATA.id, "movie")}
+                  onClick={() =>
+                    AddMovietoFavourties(APIDATA.id, "movie", true)
+                  }
                   className="btn btn-danger me-5"
                 >
                   add to Favourites

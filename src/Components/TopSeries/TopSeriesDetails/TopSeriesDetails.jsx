@@ -58,10 +58,10 @@ export default function TopSeriesDetails() {
 
   /////////////////////////ADD Series TO FAVOURITES //////////////////////////
 
-  async function AddSeriestoFavourties(media_id, media_type) {
+  async function AddSeriestoFavourties(media_id, media_type,favorite) {
     try {
       const response = await Dispatch(
-        AddToFavouritesPostAPI({ media_id, media_type })
+        AddToFavouritesPostAPI({ media_id, media_type,favorite })
       );
       console.log(response);
       return response;
@@ -121,7 +121,7 @@ export default function TopSeriesDetails() {
               </div>
               <div className={`${Styling.Important}`}>
                 <button
-                  onClick={() => AddSeriestoFavourties(APIDATA.id, "tv")}
+                  onClick={() => AddSeriestoFavourties(APIDATA.id, "tv",true)}
                   className="btn btn-danger me-5"
                 >
                   add to Favourites

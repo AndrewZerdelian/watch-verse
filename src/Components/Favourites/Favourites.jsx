@@ -4,6 +4,7 @@ import { MoviesFavouritesAPI } from "../../Redux/MoviesFavouritesSlice";
 import { Link } from "react-router-dom";
 import Style from "./Favourites.module.css";
 import { SeriesFavouritesAPI } from "../../Redux/SeriesFavouritesSlice";
+import { AddToFavouritesPostAPI } from "../../Redux/AddToFavourites";
 export default function Favourites() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
   const [CurrentPage, SetCurrentPage] = useState(1);
@@ -12,12 +13,31 @@ export default function Favourites() {
   const { SeriesAPIDATA } = useSelector((store) => store.SeriesFavourits);
   console.log(APIDATA);
 
+  //////////////////////////REMOVE FROM FAVOURITES //////////////////////////
+  async function RemoveFromFavourites(media_id, media_type, favorite) {
+    try {
+      const response = await Dispatch(
+        AddToFavouritesPostAPI({ media_id, media_type, favorite })
+      );
+      if (response?.payload?.success === true) {
+        // Refresh data after removal
+        Dispatch(MoviesFavouritesAPI(CurrentPage));
+        Dispatch(SeriesFavouritesAPI(CurrentPage));
+      }
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
     if (localStorage.getItem("account_id")) {
       Dispatch(MoviesFavouritesAPI(CurrentPage));
       Dispatch(SeriesFavouritesAPI(CurrentPage));
     }
   }, [CurrentPage]);
+
   ////////////////////////////Paggination Functions////////////////////////
   function Next() {
     if (CurrentPage < APIDATA.total_pages) {
@@ -141,6 +161,14 @@ export default function Favourites() {
                         <div className="text-white">{movie.release_date}</div>
                       </div>
                     </Link>
+                    <button
+                      onClick={() =>
+                        RemoveFromFavourites(movie.id, "movie", false)
+                      }
+                      className="btn btn-outline-danger"
+                    >
+                      Remove
+                    </button>
                   </div>
                 ))}
               </div>
@@ -233,8 +261,13 @@ export default function Favourites() {
                     </div>
                     <div className="text-white">{Series.first_air_date}</div>
                   </div>
-                  <button className="btn btn-danger">More Info</button>
                 </Link>
+                <button
+                  onClick={() => RemoveFromFavourites(Series.id, "tv", false)}
+                  className="btn btn-outline-danger"
+                >
+                  Remove
+                </button>
               </div>
             ))}
           </div>
