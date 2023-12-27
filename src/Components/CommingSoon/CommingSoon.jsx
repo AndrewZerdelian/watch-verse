@@ -136,8 +136,8 @@ export default function CommingSoon() {
                     </div>
                     <div className="text-white">{Series.release_date}</div>
                   </div>
-                  <Link to={`/BoxOfficeDetails/${Series.id}`}>
-                    <button className="btn btn-danger">More Info</button>
+                  <Link to={`/MovieDetails/${Series.id}`}>
+                    <button className="btn btn-outline-danger">More Info</button>
                   </Link>
                 </div>
               ))}

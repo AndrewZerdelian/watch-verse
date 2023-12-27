@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { TVDiscuveryCont } from "../../Context/TVDiscuveryContext/TVDiscuveryContext";
 import Slider from "react-slick";
 import Module from "./TVDiscuvery.module.css";
-import testphoto from "../../Assets/1.jpeg";
+import { Link } from "react-router-dom";
 export default function TVDiscuvery() {
   const { TVDiscuveryGETAPI, TVMapping, setTVMapping } =
     useContext(TVDiscuveryCont);
@@ -33,7 +33,7 @@ export default function TVDiscuvery() {
   return (
     <div>
       <div>
-        <h2 className="fw-bold text-white opacity-100 "> TV Shows </h2>
+        <h2 style={{ color: "red", fontWeight: "bolder" }}>TV Shows </h2>
 
         <Slider {...settings}>
           {TVMapping.map((item) => (
@@ -48,7 +48,12 @@ export default function TVDiscuvery() {
                 </div>
               </div>
               <h3 className={`${Module.FontColor} `}>
-                {item.name.split(" ").slice(0, 3).join(" ")}
+                <Link
+                  to={`/TopSeriesDetails/${item.id}`}
+                  style={{ textDecoration: "none", color: "red" }}
+                >
+                  {item.name.split(" ").slice(0, 3).join(" ")}
+                </Link>
               </h3>
             </div>
           ))}

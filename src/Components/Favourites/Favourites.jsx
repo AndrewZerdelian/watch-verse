@@ -143,7 +143,7 @@ export default function Favourites() {
                   >
                     <Link
                       className={`${Style.Link}`}
-                      to={`/BoxOfficeDetails/${movie.id}`}
+                      to={`/MovieDetails/${movie.id}`}
                     >
                       <img
                         src={ImagesBasicPath + movie.poster_path}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BoxOfficeAPIFunction } from "../../Redux/BoxOfficeSlice";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import Style from "../BoxOffice/BoxOffice.module.css";
 
 export default function BoxOffice() {
@@ -123,7 +123,7 @@ export default function BoxOffice() {
           >
             <Link
               className={`${Style.Link}`}
-              to={`/BoxOfficeDetails/${movie.id}`}
+              to={`/MovieDetails/${movie.id}`}
             >
               <img
                 src={ImagesBasicPath + movie.poster_path}

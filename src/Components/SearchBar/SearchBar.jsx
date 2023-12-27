@@ -153,12 +153,12 @@ export default function SearchBar() {
                   {search.media_type === "movie" ? (
                     <Link
                       className={`${Style.Link}`}
-                      to={`/BoxOfficeDetails/${search.id}`}
+                      to={`/MovieDetails/${search.id}`}
                     >
                       <img
                         src={ImagesBasicPath + search.poster_path}
                         alt="Movies"
-                        className="w-75"
+                        className="w-100"
                       />
                       <h3 className="text-white">
                         {search.title}
@@ -180,7 +180,7 @@ export default function SearchBar() {
                       <img
                         src={ImagesBasicPath + search.poster_path}
                         alt="Movies"
-                        className="w-75"
+                        className="w-100"
                       />
 
                       <h3 className="text-white">

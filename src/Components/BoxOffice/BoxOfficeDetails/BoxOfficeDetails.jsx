@@ -8,7 +8,7 @@ import YouTube from "react-youtube";
 import axios from "axios";
 import { AddToFavouritesPostAPI } from "../../../Redux/AddToFavourites";
 
-export default function BoxOfficeDetails() {
+export default function MovieDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
 
   const { APIDATA, isLoading } = useSelector((selector) => selector.BODetails);
@@ -130,13 +130,13 @@ export default function BoxOfficeDetails() {
                   onClick={() =>
                     AddMovietoFavourties(APIDATA.id, "movie", true)
                   }
-                  className="btn btn-danger me-5"
+                  className="btn btn-outline-danger me-5"
                 >
                   add to Favourites
                 </button>
                 <button
                   onClick={MovieTrailer}
-                  className="btn btn-danger me-5 "
+                  className="btn btn-outline-danger me-5 "
                   type="button"
                   data-bs-toggle="modal"
                   data-bs-target="#staticBackdrop"
