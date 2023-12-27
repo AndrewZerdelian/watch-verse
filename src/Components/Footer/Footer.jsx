@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="pt-5">
       <div className="card text-white bg-black">
         <h5 className="card-header">Featured</h5>
         <div className="card-body">
