@@ -137,7 +137,7 @@ export default function TopSeries() {
                     </div>
                     <div className="text-white">{Series.first_air_date}</div>
                   </div>
-                  <button className="btn btn-danger">More Info</button>
+                  
                 </Link>
               </div>
             ))}

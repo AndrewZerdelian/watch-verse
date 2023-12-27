@@ -34,7 +34,7 @@ export default function App() {
         },
 
         { path: "BoxOffice", element: <BoxOffice /> },
-        { path: "BoxOfficeDetails/:ID", element: <BoxOfficeDetails /> },
+        { path: "MovieDetails/:ID", element: <BoxOfficeDetails /> },
         { path: "TopSeries", element: <TopSeries /> },
         { path: "TopSeriesDetails/:ID", element: <TopSeriesDetails /> },
         { path: "CommingSoon", element: <CommingSoon /> },

@@ -10,3 +10,23 @@
   .Scalling:hover {
     transform: scale(1.1);
   }
+
+
+  
+
+  
+.container{
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.Image {
+  transition: transform 0.5s;
+  transform-origin: center center;
+}
+
+.Image:hover {
+  transform: scale(1.2);
+}
