@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { TVDiscuveryCont } from "../../Context/TVDiscuveryContext/TVDiscuveryContext";
 import Slider from "react-slick";
 import Module from "./TVDiscuvery.module.css";
-
+import testphoto from "../../Assets/1.jpeg";
 export default function TVDiscuvery() {
   const { TVDiscuveryGETAPI, TVMapping, setTVMapping } =
     useContext(TVDiscuveryCont);
@@ -32,21 +32,28 @@ export default function TVDiscuvery() {
 
   return (
     <div>
-      <h2 className="fw-bold text-white opacity-100 "> TV Shows </h2>
-      <Slider {...settings}>
-        {TVMapping.map((item) => (
-          <div key={item.id} className={`${Module.Scalling}`}>
-            <img
-              src={ImagesBasicPath + item.backdrop_path}
-              alt="background"
-              className={`w-100 px-5  rounded-5 pt-5`}
-            />
-            <h3 className={`${Module.FontColor} pb-5 `}>
-              {item.name.split(" ").slice(0, 3).join(" ")}
-            </h3>
-          </div>
-        ))}
-      </Slider>
+      <div>
+        <h2 className="fw-bold text-white opacity-100 "> TV Shows </h2>
+
+        <Slider {...settings}>
+          {TVMapping.map((item) => (
+            <div key={item.id}>
+              <div className={`${Module.container}`}>
+                <div className={`${Module.Image}`}>
+                  <img
+                    src={ImagesBasicPath + item.backdrop_path}
+                    alt="background"
+                    className={`w-100 `}
+                  />
+                </div>
+              </div>
+              <h3 className={`${Module.FontColor} `}>
+                {item.name.split(" ").slice(0, 3).join(" ")}
+              </h3>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 }

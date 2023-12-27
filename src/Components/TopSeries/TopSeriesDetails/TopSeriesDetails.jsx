@@ -6,6 +6,7 @@ import { TopSeriesDetailsAPIFunc } from "../../../Redux/TopSeriesDetailsSlice";
 import Styling from "./TopSeriesDetails.module.css";
 import axios from "axios";
 import YouTube from "react-youtube";
+import { AddToFavouritesPostAPI } from "../../../Redux/AddToFavourites";
 
 export default function TopSeriesDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
@@ -34,7 +35,6 @@ export default function TopSeriesDetails() {
       );
       setVideoId(response.data.results[0].key);
 
-      
       const trailers = response.data.results.filter(
         (video) => video.type === "Trailer"
       );
@@ -55,6 +55,20 @@ export default function TopSeriesDetails() {
       autoplay: 1,
     },
   };
+
+  /////////////////////////ADD Series TO FAVOURITES //////////////////////////
+
+  async function AddSeriestoFavourties(media_id, media_type,favorite) {
+    try {
+      const response = await Dispatch(
+        AddToFavouritesPostAPI({ media_id, media_type,favorite })
+      );
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error("Error adding movie to favourites:", error);
+    }
+  }
 
   return (
     <div className={`${Styling.main} text-white`}>
@@ -106,7 +120,10 @@ export default function TopSeriesDetails() {
                 ))}
               </div>
               <div className={`${Styling.Important}`}>
-                <button className="btn btn-danger me-5">
+                <button
+                  onClick={() => AddSeriestoFavourties(APIDATA.id, "tv",true)}
+                  className="btn btn-danger me-5"
+                >
                   add to Favourites
                 </button>
                 <button

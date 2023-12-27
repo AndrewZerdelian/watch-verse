@@ -23,14 +23,14 @@ export const SeriesFavouritesAPI = createAsyncThunk(
 let SeriesFavouritesSlice = createSlice({
   name: "SeriesFavouritesSlice",
   initialState: {
-    APIDATA: [],
+    SeriesAPIDATA: [],
   },
 
   extraReducers: function (builder) {
     builder.addCase(
       SeriesFavouritesAPI.fulfilled,
       function (PrevState, Action) {
-        PrevState.APIDATA = Action.payload;
+        PrevState.SeriesAPIDATA = Action.payload;
         console.log(Action.payload);
       }
     );

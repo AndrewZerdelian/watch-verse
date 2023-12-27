@@ -5,7 +5,10 @@ const APIKEY = process.env.REACT_APP_API_KEY;
 const AccountID = localStorage.getItem("account_id");
 const SessionID = localStorage.getItem("session_id");
 //console.log(SessionID);
-export const FavouritesAPI = createAsyncThunk(
+//if (localStorage.getItem("account_id")){
+
+//}
+export const MoviesFavouritesAPI = createAsyncThunk(
   "FavouritesSlice/DeleteFavourites",
   async function (page) {
     try {
@@ -27,7 +30,7 @@ let FavouritesSlice = createSlice({
   },
 
   extraReducers: function (builder) {
-    builder.addCase(FavouritesAPI.fulfilled, function (PrevState, Action) {
+    builder.addCase(MoviesFavouritesAPI.fulfilled, function (PrevState, Action) {
       PrevState.APIDATA = Action.payload;
       console.log(Action.payload);
     });

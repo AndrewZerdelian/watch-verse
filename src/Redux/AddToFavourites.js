@@ -1,21 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 const APIKEY = process.env.REACT_APP_API_KEY;
 const AccountID = localStorage.getItem("account_id");
 const SessionID = localStorage.getItem("session_id");
 //console.log(SessionID);
-
+//this function can add and delete from favourites now,
+//by sending true or false in favourites from components buttons,
 export const AddToFavouritesPostAPI = createAsyncThunk(
   "AddToFavouriteFunc/AddToFavourites",
-  async function (media_id) {
+  async function ({ media_id, media_type, favorite }) {
     try {
       const response = await axios.post(
         `https://api.themoviedb.org/3/account/${AccountID}/favorite?&session_id=${SessionID}&${APIKEY}&`,
-
-        { media_type: "movie", media_id, favorite: true }
+        { media_type, media_id, favorite }
       );
-      //https://api.themoviedb.org/3/account/{account_id}/favorite/
       console.log(response);
       return response?.data;
     } catch (error) {
@@ -66,5 +66,4 @@ export const AddToFavouritesSliceReduer = AddToFavouriteFunc.reducer;
     }
   }
 );
- 
  */

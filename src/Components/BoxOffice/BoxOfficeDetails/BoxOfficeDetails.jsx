@@ -8,7 +8,6 @@ import YouTube from "react-youtube";
 import axios from "axios";
 import { AddToFavouritesPostAPI } from "../../../Redux/AddToFavourites";
 
-
 export default function BoxOfficeDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
 
@@ -20,20 +19,20 @@ export default function BoxOfficeDetails() {
 
   let Params = useParams();
 
-    /////////////////////////ADD MOVIES TO FAVOURITES //////////////////////////
-  
+  /////////////////////////ADD MOVIES TO FAVOURITES //////////////////////////
 
-    async function AddMovietoFavourties(ID) {
-      try {
-        const response =  await Dispatch(AddToFavouritesPostAPI(ID))
-        console.log(response);
-        return response
-        
-      } catch (error) {
-        console.error("Error adding movie to favourites:", error);
-      }
+  async function AddMovietoFavourties(media_id, media_type, favorite) {
+    try {
+      const response = await Dispatch(
+        AddToFavouritesPostAPI({ media_id, media_type, favorite })
+      );
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error(error);
     }
-//////////////////////////////////////
+  }
+  //////////////////////////////////////
   useEffect(() => {
     Dispatch(BoxOfficeDetailsAPIFUNC(Params.ID));
   }, []);
@@ -81,7 +80,6 @@ export default function BoxOfficeDetails() {
     },
   };
 
-  
   return (
     <div className={`${Styling.main} text-white`}>
       {isLoading ? (
@@ -129,7 +127,9 @@ export default function BoxOfficeDetails() {
               </div>
               <div className={`${Styling.Important}`}>
                 <button
-                  onClick={ ()=> AddMovietoFavourties(APIDATA.id)}
+                  onClick={() =>
+                    AddMovietoFavourties(APIDATA.id, "movie", true)
+                  }
                   className="btn btn-danger me-5"
                 >
                   add to Favourites
