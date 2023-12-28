@@ -23,10 +23,6 @@ export default function Navbar() {
           },
         }
       );
-
-      // Remove tokens from localStorage
-      //localStorage.removeItem("request_token");
-      //localStorage.removeItem("session_id");
       localStorage.clear();
       console.log("Successfully logged out");
       NavigatetoHome("/");
@@ -34,44 +30,23 @@ export default function Navbar() {
       console.log(error);
     }
   }
-  /**  async function Logout() {
-    try {
-      await axios.delete(
-        `https://api.themoviedb.org/3/authentication/session?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&`,
-        {
-          session_id:"dd223fa1e7c8af841225681bc93a7d8aae5f937e",
-        }
-      );
-      // Remove tokens from localStorage
-      localStorage.removeItem("request_token");
-      localStorage.removeItem("session_id");
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  /**
+   * {!localStorage.getItem("account_id") && (
+                <li className="nav-item">
+                  <button
+                    className={"nav-link text-danger fw-bold"}
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={GetToken}
+                  >
+                    Login
+                  </button>
+                  <Login />
+                </li>
+              )}
+        
    */
 
-  /**
-   *   
-  async function Logout() {
-    try {
-      const response = await axios.delete(
-        `https://api.themoviedb.org/3/authentication/session?api_key=2d7b24dfe90cb92bab2f42026ddf8da7&`,
-        {
-          session_id: localStorage.removeItem("session_id"),
-          //session_id:Session_id,
-          //session_id:localStorage.getItem("session_id"),
-          //session_id: localStorage.removeItem("request_token"),
-        }
-      );
-      //SetLocalStorage(null);
-      console.log(response);
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-   */
   return (
     <div>
       <nav className="navbar navbar-expand-lg ">
@@ -143,17 +118,29 @@ export default function Navbar() {
                   Favourites
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <button
-                  className={"nav-link text-danger fw-bold"}
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  onClick={GetToken}
-                >
-                  Login
-                </button>
-                <Login />
-              </li>
+              {localStorage.getItem("account_id") ? (
+                <li className="nav-item">
+                  <button
+                    className={"nav-link text-danger fw-bold"}
+                    onClick={Logout}
+                  >
+                    Logout
+                  </button>
+                  <Login />
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <button
+                    className={"nav-link text-danger fw-bold"}
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={GetToken}
+                  >
+                    Login
+                  </button>
+                  <Login />
+                </li>
+              )}
               <li className="nav-item dropdown">
                 <NavLink
                   className="nav-link text-danger fw-bold dropdown-toggle"
@@ -173,14 +160,7 @@ export default function Navbar() {
                       Creating new account
                     </a>
                   </li>
-                  <li>
-                    <button
-                      onClick={Logout}
-                      className="dropdown-item text-danger fw-bold bg-dark"
-                    >
-                      Logout
-                    </button>
-                  </li>
+
                   <li>
                     <hr className="dropdown-divider " />
                   </li>

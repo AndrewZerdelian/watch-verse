@@ -48,6 +48,7 @@ export default function AccountContextProvider({ children }) {
       localStorage.setItem("session_id", response?.data?.session_id);
       SETSession_id(response?.data?.session_id);
       //console.log(localStorage.getItem("session_id"));
+      
       /////////////////////////USER ID ////////////////////////////
       if (response?.data?.session_id) {
         try {
@@ -72,6 +73,7 @@ export default function AccountContextProvider({ children }) {
       console.log(error);
     }
   }
+  useEffect(() => {}, [SesionID]);
   return (
     <AccountCont.Provider
       value={{ POSTAccountDetails, Session_id, SETSession_id }}
