@@ -1,6 +1,58 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const APIKEY = process.env.REACT_APP_API_KEY;
+
+// Define a thunk to fetch account_id and session_id from localStorage
+const getAccountAndSessionIds = () => {
+  const AccountID = localStorage.getItem("account_id");
+  const SessionID = localStorage.getItem("session_id");
+  return { AccountID, SessionID };
+};
+
+// Define the thunk to add to favorites
+export const AddToFavouritesPostAPI = createAsyncThunk(
+  "AddToFavouriteFunc/AddToFavourites",
+  async function ({ media_id, media_type, favorite }) {
+    try {
+      // Use the thunk to get the current account_id and session_id
+      const { AccountID, SessionID } = getAccountAndSessionIds();
+
+      const response = await axios.post(
+        `https://api.themoviedb.org/3/account/${AccountID}/favorite?&session_id=${SessionID}&${APIKEY}&`,
+        { media_type, media_id, favorite }
+      );
+      console.log(response);
+      return response?.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+let AddToFavouriteFunc = createSlice({
+  name: "AddToFavouriteFunc",
+  initialState: {
+    Favourites: [],
+  },
+
+  extraReducers: function (builder) {
+    builder.addCase(
+      AddToFavouritesPostAPI.fulfilled,
+      function (PrevState, Action) {
+        PrevState.Favourites = Action.payload;
+        console.log(Action.payload);
+      }
+    );
+  },
+});
+
+export const AddToFavouritesSliceReduer = AddToFavouriteFunc.reducer;
+
+/**ORIGINAL CODE 
+ * import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
 
 const APIKEY = process.env.REACT_APP_API_KEY;
 const AccountID = localStorage.getItem("account_id");
@@ -42,6 +94,9 @@ let AddToFavouriteFunc = createSlice({
 });
 
 export const AddToFavouritesSliceReduer = AddToFavouriteFunc.reducer;
+
+
+ */
 
 /**
  * export const AddToFavouritesPostAPI = createAsyncThunk(
