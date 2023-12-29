@@ -64,7 +64,7 @@ export default function Favourites() {
   }
   return (
     <div>
-      {localStorage.getItem("account_id") ? (
+      {localStorage.getItem("session_id") ? (
         <div>
           <h1 className="text-danger text-center p-5 ">Favourites</h1>
           <div>

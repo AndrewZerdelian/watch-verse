@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { AccountCont } from "../../Context/AccountContext/AccountContext";
 
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
+
 
 export default function Login() {
   const { POSTAccountDetails } = useContext(AccountCont);
-  //const NavigatetoHome = useNavigate();
+
   const Form = useFormik({
     initialValues: {
       username: "",
@@ -16,11 +16,6 @@ export default function Login() {
     onSubmit: POSTAccountDetails,
   });
 
-/**
- * if (localStorage.getItem("account_id")){
-  NavigatetoHome("/")
-}
- */
   return (
     <div
       className="modal fade"

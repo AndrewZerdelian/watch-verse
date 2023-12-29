@@ -2,16 +2,18 @@ import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import axios from "axios";
-import { AccountCont } from "../../Context/AccountContext/AccountContext";
 import { TokenCont } from "../../Context/LoginContext/TokenContext";
+//import { AccountCont } from "../../Context/AccountContext/AccountContext";
 
 export default function Navbar() {
-  const { Session_id } = useContext(AccountCont);
+  //const { Session_id } = useContext(AccountCont);//awil ma b3mel refresh el session betdee3
+  const Session_id = localStorage.getItem("session_id");  
+  console.log(Session_id);
   const { GetToken } = useContext(TokenCont);
   const NavigatetoHome = useNavigate();
   async function Logout() {
     try {
-      if (!localStorage.getItem("session_id")) {
+      if (!Session_id) {
         console.error("Session ID not found in localStorage");
         return;
       }
@@ -106,19 +108,22 @@ export default function Navbar() {
                   Comming Soon
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive
-                      ? "nav-link fw-bold text-danger text-decoration-underline "
-                      : "nav-link text-danger fw-bold"
-                  }
-                  to="Favourites"
-                >
-                  Favourites
-                </NavLink>
-              </li>
-              {localStorage.getItem("account_id") ? (
+              {Session_id && (
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "nav-link fw-bold text-danger text-decoration-underline "
+                        : "nav-link text-danger fw-bold"
+                    }
+                    to="Favourites"
+                  >
+                    Favourites
+                  </NavLink>
+                </li>
+              )}
+
+              { Session_id? (
                 <li className="nav-item">
                   <button
                     className={"nav-link text-danger fw-bold"}
@@ -131,6 +136,7 @@ export default function Navbar() {
               ) : (
                 <li className="nav-item">
                   <button
+
                     className={"nav-link text-danger fw-bold"}
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
