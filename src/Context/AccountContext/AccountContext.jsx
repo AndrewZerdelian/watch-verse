@@ -48,7 +48,7 @@ export default function AccountContextProvider({ children }) {
       localStorage.setItem("session_id", response?.data?.session_id);
       SETSession_id(response?.data?.session_id);
       //console.log(localStorage.getItem("session_id"));
-      
+
       /////////////////////////USER ID ////////////////////////////
       if (response?.data?.session_id) {
         try {
@@ -60,6 +60,8 @@ export default function AccountContextProvider({ children }) {
           console.log(response);
           console.log(response.data.id);
           localStorage.setItem("account_id", response.data.id);
+          window.location.reload(); // untill i find a better solution for favourites
+          //and the navbar login not disappearing with the ternary operator
           return response;
         } catch (error) {
           console.log(error);
@@ -73,7 +75,7 @@ export default function AccountContextProvider({ children }) {
       console.log(error);
     }
   }
-  useEffect(() => {}, [SesionID]);
+
   return (
     <AccountCont.Provider
       value={{ POSTAccountDetails, Session_id, SETSession_id }}
@@ -82,30 +84,3 @@ export default function AccountContextProvider({ children }) {
     </AccountCont.Provider>
   );
 }
-/** TESTING 
- * {
-          username: "",
-          password: "",
-          request_token: localStorage.getItem("request_token"),
-        }
- */
-
-/**
-  username: 'johnny_appleseed',
-  password: 'test123',
-  request_token: '1531f1a558c8357ce8990cf887ff196e8f5402ec'
-         */
-
-/**
-   * if (response.data.success === true) {
-        const response = await axios.post(
-          `https://api.themoviedb.org/3/authentication/session/new?${APIKEY}&`,
-          {
-            request_token: localStorage?.getItem("request_token"),
-          }
-        );
-        return response;
-      } else {
-        console.log("Session id not found ? ");
-      }
-   */
