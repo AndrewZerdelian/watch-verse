@@ -56,12 +56,12 @@ export default function Navbar() {
             className="collapse navbar-collapse "
             id="navbarSupportedContent"
           >
-            <ul className="nav nav-underline ms-auto mb-2 mb-lg-0 ">
+            <ul className="navbar-nav  nav-underline ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "nav-link fw-bold text-danger "
+                      ? "nav-link fw-bold text-danger  "
                       : "nav-link text-danger fw-bold"
                   }
                   to="BoxOffice"
@@ -73,7 +73,7 @@ export default function Navbar() {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "nav-link nav-link active fw-bold text-danger "
+                      ? "nav-link fw-bold text-danger "
                       : "nav-link text-danger fw-bold"
                   }
                   to="TopSeries"
@@ -98,7 +98,7 @@ export default function Navbar() {
                   <NavLink
                     className={({ isActive }) =>
                       isActive
-                        ? "nav-link nav-link active fw-bold text-danger "
+                        ? "nav-link nav-link active fw-bold text-danger"
                         : "nav-link text-danger fw-bold"
                     }
                     to="Favourites"
