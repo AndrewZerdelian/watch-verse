@@ -2,15 +2,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const APIKEY = process.env.REACT_APP_API_KEY;
-const AccountID = localStorage.getItem("account_id");
-const SessionID = localStorage.getItem("session_id");
-//console.log(SessionID);
+
 //if (localStorage.getItem("account_id")){
 
 //}
 export const MoviesFavouritesAPI = createAsyncThunk(
   "FavouritesSlice/DeleteFavourites",
   async function (page) {
+    const AccountID = localStorage.getItem("account_id");
+    const SessionID = localStorage.getItem("session_id");
+    console.log("FROM SLICE: " + SessionID);
+    console.log("FROM SLICE: " + AccountID);
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/account/${AccountID}/favorite/movies?&session_id=${SessionID}&${APIKEY}&${page}`
@@ -30,10 +32,13 @@ let FavouritesSlice = createSlice({
   },
 
   extraReducers: function (builder) {
-    builder.addCase(MoviesFavouritesAPI.fulfilled, function (PrevState, Action) {
-      PrevState.APIDATA = Action.payload;
-      console.log(Action.payload);
-    });
+    builder.addCase(
+      MoviesFavouritesAPI.fulfilled,
+      function (PrevState, Action) {
+        PrevState.APIDATA = Action.payload;
+        console.log(Action.payload);
+      }
+    );
   },
 });
 

@@ -48,11 +48,12 @@ export default function App() {
 
   return (
     <main>
+    <Provider store={myStore}>
       <TokenContextProvider>
         <AccountContextProvider>
           <FavouritesContextProvider>
             <QueryClientProvider client={Query}>
-              <Provider store={myStore}>
+              
                 <TVDiscuveryContextProvider>
                   <MovieDiscuveryContext>
                     <CoomingSoonQueryApiContextProvider>
@@ -60,11 +61,12 @@ export default function App() {
                     </CoomingSoonQueryApiContextProvider>
                   </MovieDiscuveryContext>
                 </TVDiscuveryContextProvider>
-              </Provider>
+              
             </QueryClientProvider>
           </FavouritesContextProvider>
         </AccountContextProvider>
       </TokenContextProvider>
+      </Provider>
     </main>
   );
 }
