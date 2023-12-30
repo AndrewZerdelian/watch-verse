@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BoxOfficeDetailsAPIFUNC } from "../../../Redux/BoxOfficeDetailsSlice";
@@ -7,11 +7,13 @@ import Styling from "./BoxOfficeDetails.module.css";
 import YouTube from "react-youtube";
 import axios from "axios";
 import { AddToFavouritesPostAPI } from "../../../Redux/AddToFavourites";
-
+import toast, { Toaster } from "react-hot-toast";
+import { AccountCont } from "../../../Context/AccountContext/AccountContext";
 export default function MovieDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
 
   const { APIDATA, isLoading } = useSelector((selector) => selector.BODetails);
+  const { Session_id } = useContext(AccountCont);
 
   const Dispatch = useDispatch();
 
@@ -23,11 +25,17 @@ export default function MovieDetails() {
 
   async function AddMovietoFavourties(media_id, media_type, favorite) {
     try {
-      const response = await Dispatch(
-        AddToFavouritesPostAPI({ media_id, media_type, favorite })
-      );
-      console.log(response);
-      return response;
+      if (Session_id) {
+        const response = await Dispatch(
+          AddToFavouritesPostAPI({ media_id, media_type, favorite })
+        );
+        console.log(response);
+        return response;
+      } else {
+        toast.error("Make sure to login", {
+          style: { background: "#333", color: "#fff" },
+        });
+      }
     } catch (error) {
       console.error(error);
     }
@@ -90,6 +98,7 @@ export default function MovieDetails() {
         </div>
       ) : (
         <div className="vh-100 ">
+          <Toaster position="top-center" reverseOrder={false} />
           <img
             className={` ${Styling.Background} `}
             src={ImagesBasicPath + APIDATA.backdrop_path}
