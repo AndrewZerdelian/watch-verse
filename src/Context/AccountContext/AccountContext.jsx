@@ -8,8 +8,10 @@ const APIKEY = process.env.REACT_APP_API_KEY;
 export default function AccountContextProvider({ children }) {
   const { LocalStorage } = useContext(TokenCont);
 
-  const [Session_id, SETSession_id] = useState(localStorage.getItem("session_id"));
-
+  const [Session_id, SETSession_id] = useState(
+    localStorage.getItem("session_id")
+  );
+    const [LoadingAnimation,SetLoadingAnimation] = useState(null);
   async function POSTAccountDetails({ username, password }) {
     try {
       const response = await axios.post(
@@ -20,7 +22,7 @@ export default function AccountContextProvider({ children }) {
           request_token: LocalStorage,
         }
       );
-
+      SetLoadingAnimation(true)
       console.log(response);
 
       if (response?.data?.success === true) {
@@ -57,9 +59,10 @@ export default function AccountContextProvider({ children }) {
       const userResponse = await axios.get(
         `https://api.themoviedb.org/3/account?${APIKEY}&session_id=${Session_id}`
       );
-  
+
       localStorage.setItem("account_id", userResponse.data.id);
-      console.log("USER ID FROM CONTAXT : "+userResponse.data.id);
+      console.log("USER ID FROM CONTAXT : " + userResponse.data.id);
+      SetLoadingAnimation(false);
       return userResponse;
     } catch (error) {
       console.error("User ID retrieval failed:", error);
@@ -75,7 +78,7 @@ export default function AccountContextProvider({ children }) {
 
   return (
     <AccountCont.Provider
-      value={{ POSTAccountDetails, Session_id, SETSession_id }}
+      value={{ POSTAccountDetails, Session_id, SETSession_id,LoadingAnimation,SetLoadingAnimation }}
     >
       {children}
     </AccountCont.Provider>

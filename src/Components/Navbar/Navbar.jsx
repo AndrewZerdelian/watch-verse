@@ -56,12 +56,12 @@ export default function Navbar() {
             className="collapse navbar-collapse "
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
+            <ul className="navbar-nav  nav-underline ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "nav-link fw-bold text-danger text-decoration-underline "
+                      ? "nav-link fw-bold text-danger  "
                       : "nav-link text-danger fw-bold"
                   }
                   to="BoxOffice"
@@ -73,7 +73,7 @@ export default function Navbar() {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "nav-link fw-bold text-danger text-decoration-underline "
+                      ? "nav-link fw-bold text-danger "
                       : "nav-link text-danger fw-bold"
                   }
                   to="TopSeries"
@@ -85,7 +85,7 @@ export default function Navbar() {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "nav-link fw-bold text-danger text-decoration-underline "
+                      ? "nav-link fw-bold text-danger "
                       : "nav-link text-danger fw-bold"
                   }
                   to="CommingSoon"
@@ -98,7 +98,7 @@ export default function Navbar() {
                   <NavLink
                     className={({ isActive }) =>
                       isActive
-                        ? "nav-link fw-bold text-danger text-decoration-underline "
+                        ? "nav-link nav-link active fw-bold text-danger"
                         : "nav-link text-danger fw-bold"
                     }
                     to="Favourites"
@@ -133,8 +133,11 @@ export default function Navbar() {
               )}
               <li className="nav-item dropdown">
                 <NavLink
-                  className="nav-link text-danger fw-bold dropdown-toggle"
-                  href="#"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "nav-link text-danger fw-bold dropdown-toggle"
+                      : "nav-link text-danger fw-bold"
+                  }
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
