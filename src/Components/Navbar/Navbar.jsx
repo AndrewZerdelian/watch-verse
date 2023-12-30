@@ -3,14 +3,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import axios from "axios";
 import { TokenCont } from "../../Context/LoginContext/TokenContext";
-//import { AccountCont } from "../../Context/AccountContext/AccountContext";
+import { AccountCont } from "../../Context/AccountContext/AccountContext";
 
 export default function Navbar() {
-  //const { Session_id } = useContext(AccountCont);//awil ma b3mel refresh el session betdee3
-  const Session_id = localStorage.getItem("session_id");  
+  const { Session_id, SETSession_id } = useContext(AccountCont); //awil ma b3mel refresh el session betdee3
+  const NavigatetoHome = useNavigate();
   console.log(Session_id);
   const { GetToken } = useContext(TokenCont);
-  const NavigatetoHome = useNavigate();
+
   async function Logout() {
     try {
       if (!Session_id) {
@@ -28,27 +28,12 @@ export default function Navbar() {
       localStorage.clear();
       console.log("Successfully logged out");
       NavigatetoHome("/");
+
+      SETSession_id(null);
     } catch (error) {
       console.log(error);
     }
   }
-  /**
-   * {!localStorage.getItem("account_id") && (
-                <li className="nav-item">
-                  <button
-                    className={"nav-link text-danger fw-bold"}
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    onClick={GetToken}
-                  >
-                    Login
-                  </button>
-                  <Login />
-                </li>
-              )}
-        
-   */
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg ">
@@ -123,7 +108,7 @@ export default function Navbar() {
                 </li>
               )}
 
-              { Session_id? (
+              {Session_id ? (
                 <li className="nav-item">
                   <button
                     className={"nav-link text-danger fw-bold"}
@@ -136,7 +121,6 @@ export default function Navbar() {
               ) : (
                 <li className="nav-item">
                   <button
-
                     className={"nav-link text-danger fw-bold"}
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
@@ -179,16 +163,3 @@ export default function Navbar() {
     </div>
   );
 }
-/**
- *               <li className="nav-item ">
-                <NavLink className="nav-link text-danger fw-bold active" aria-current="page" to="/">
-                  Home
-                </NavLink>
-              </li>
- */
-/*
- *       <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
- */
