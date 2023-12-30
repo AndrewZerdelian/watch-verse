@@ -17,12 +17,15 @@ export const AddToFavouritesPostAPI = createAsyncThunk(
     try {
       // Use the thunk to get the current account_id and session_id
       const { AccountID, SessionID } = getAccountAndSessionIds();
-
+      if (SessionID === null) {
+        console.log("Please Login");
+      }
       const response = await axios.post(
         `https://api.themoviedb.org/3/account/${AccountID}/favorite?&session_id=${SessionID}&${APIKEY}&`,
         { media_type, media_id, favorite }
       );
       console.log(response);
+
       return response?.data;
     } catch (error) {
       console.log(error);
