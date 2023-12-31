@@ -9,6 +9,8 @@ import axios from "axios";
 import { AddToFavouritesPostAPI } from "../../../Redux/AddToFavourites";
 import toast, { Toaster } from "react-hot-toast";
 import { AccountCont } from "../../../Context/AccountContext/AccountContext";
+import SimilerMovies from "../../Similer/SimilerMovies";
+import { SimilerMoviesCont } from "../../../Context/Similer/SimilerMoviesContext";
 export default function MovieDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
 
@@ -30,10 +32,25 @@ export default function MovieDetails() {
           AddToFavouritesPostAPI({ media_id, media_type, favorite })
         );
         console.log(response);
+        console.log(response?.payload?.status_message);
+        if (
+          response?.payload?.status_message ===
+          "The item/record was updated successfully."
+        ) {
+          toast.error("Movie already in your favourites", {
+            style: { background: "#333", color: "#fff",borderRadius: "20px"},
+          });
+        }
+        if (response?.payload?.status_message === "Success.") {
+          toast.success("added to your favourites successfully", {
+            style: { background: "#333", color: "#fff",borderRadius: "20px"},
+          });
+        }
+
         return response;
       } else {
         toast.error("Make sure to login", {
-          style: { background: "#333", color: "#fff" },
+          style: { background: "#333", color: "#fff" ,borderRadius: "20px"},
         });
       }
     } catch (error) {
@@ -43,7 +60,7 @@ export default function MovieDetails() {
   //////////////////////////////////////
   useEffect(() => {
     Dispatch(BoxOfficeDetailsAPIFUNC(Params.ID));
-  }, []);
+  }, [Params.ID]);
 
   const [videoId, setVideoId] = useState("");
   const [youtubePlayer, setYoutubePlayer] = useState(null); // State to store the YouTube player data
@@ -97,7 +114,7 @@ export default function MovieDetails() {
           </div>
         </div>
       ) : (
-        <div className="vh-100 ">
+        <div>
           <Toaster position="top-center" reverseOrder={false} />
           <img
             className={` ${Styling.Background} `}
@@ -155,6 +172,7 @@ export default function MovieDetails() {
               </div>
             </div>
           </div>
+          <SimilerMovies />
         </div>
       )}
       <div

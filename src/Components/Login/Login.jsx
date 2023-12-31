@@ -3,7 +3,7 @@ import { AccountCont } from "../../Context/AccountContext/AccountContext";
 import { useFormik } from "formik";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 //import Animation from "../../Assets/Animation - 1703943436684 .json";
-
+import  { Toaster } from "react-hot-toast";
 export default function Login() {
   const { POSTAccountDetails, LoadingAnimation, } =
     useContext(AccountCont);
@@ -27,6 +27,7 @@ export default function Login() {
     >
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content bg-dark">
+          <Toaster position="top-center" reverseOrder={false} />
           {LoadingAnimation ? (
             <Player
               autoplay
