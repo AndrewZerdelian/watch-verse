@@ -97,14 +97,6 @@ export default function SimilerMovies() {
               )}
               <li className="page-item">
                 <button
-                  onClick={LastPage}
-                  className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
-                >
-                  {MappingOverSimiler.total_pages}
-                </button>
-              </li>
-              <li className="page-item">
-                <button
                   onClick={Next}
                   className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
                   aria-label="Next"
@@ -140,7 +132,7 @@ export default function SimilerMovies() {
           </div>
         ))}
       </div>
-      
+
       <div className="d-flex justify-content-around align-items-center pt-5">
         <nav aria-label="Page navigation example">
           <ul className="pagination">
@@ -184,15 +176,6 @@ export default function SimilerMovies() {
             )}
             <li className="page-item">
               <button
-                onClick={LastPage}
-                className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
-              >
-                {MappingOverSimiler.total_pages}
-              </button>
-            </li>
-
-            <li className="page-item">
-              <button
                 onClick={Next}
                 className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
                 aria-label="Next"
@@ -206,36 +189,3 @@ export default function SimilerMovies() {
     </div>
   );
 }
-
-/**
- *  <div className="bg-black">
-      <h1 className="text-danger text-center">Similer Movies</h1>
-      {MappingOverSimiler?.results?.map((movie) => (
-        <div
-            key={movie.id}
-            className={`col-3 text-center py-5 pos ${Style.Scalling}`}
-          >
-            <Link
-              className={`${Style.Link}`}
-              to={`/MovieDetails/${movie.id}`}
-            >
-              <img
-                src={ImagesBasicPath + movie.poster_path}
-                alt="Movies"
-                className="w-75"
-              />
-              <h3 className="text-white">
-                {movie.title.split(" ").slice(0, 4).join(" ")}
-              </h3>
-              <div className="d-flex justify-content-around align-items-center my-3">
-                <div className="text-white gut-5">
-                  {movie.vote_average.toFixed(1)}
-                  <i className="fa-sharp fa-solid fa-star text-danger"></i>
-                </div>
-                <div className="text-white">{movie.release_date}</div>
-              </div>
-            </Link>
-          </div>
-      ))}
-    </div>
- */

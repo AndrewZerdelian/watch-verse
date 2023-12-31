@@ -9,6 +9,7 @@ import YouTube from "react-youtube";
 import { AddToFavouritesPostAPI } from "../../../Redux/AddToFavourites";
 import toast, { Toaster } from "react-hot-toast";
 import { AccountCont } from "../../../Context/AccountContext/AccountContext";
+import SimilerSeries from "../../Similer/SimilerSeries";
 
 export default function TopSeriesDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
@@ -23,7 +24,7 @@ export default function TopSeriesDetails() {
 
   useEffect(() => {
     Dispatch(TopSeriesDetailsAPIFunc(Params.ID));
-  }, []);
+  }, [Params.ID]);
 
   ////////////////////////Series Trailers////////////////////
   const [TVSeriesTrailer, SetTVSeriesTrailer] = useState(false);
@@ -161,12 +162,13 @@ export default function TopSeriesDetails() {
         </div>
       )}
       {TVSeriesTrailer ? (
-        <div className="container vh-75">
+        <div className="container vh-75 p-5">
           <YouTube videoId={videoId} opts={opts} />
         </div>
       ) : (
         <></>
       )}
+      <SimilerSeries />
     </div>
   );
 }

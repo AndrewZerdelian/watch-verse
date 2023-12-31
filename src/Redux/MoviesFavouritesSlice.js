@@ -15,7 +15,7 @@ export const MoviesFavouritesAPI = createAsyncThunk(
     console.log("FROM SLICE: " + AccountID);
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/account/${AccountID}/favorite/movies?&session_id=${SessionID}&${APIKEY}&${page}`
+        `https://api.themoviedb.org/3/account/${AccountID}/favorite/movies?&session_id=${SessionID}&${APIKEY}&page=${page}`
       );
       console.log(response);
       return response.data;
