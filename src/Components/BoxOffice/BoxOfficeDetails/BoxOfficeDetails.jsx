@@ -38,19 +38,19 @@ export default function MovieDetails() {
           "The item/record was updated successfully."
         ) {
           toast.error("Movie already in your favourites", {
-            style: { background: "#333", color: "#fff" },
+            style: { background: "#333", color: "#fff",borderRadius: "20px"},
           });
         }
         if (response?.payload?.status_message === "Success.") {
           toast.success("added to your favourites successfully", {
-            style: { background: "#333", color: "#fff" },
+            style: { background: "#333", color: "#fff",borderRadius: "20px"},
           });
         }
 
         return response;
       } else {
         toast.error("Make sure to login", {
-          style: { background: "#333", color: "#fff" },
+          style: { background: "#333", color: "#fff" ,borderRadius: "20px"},
         });
       }
     } catch (error) {

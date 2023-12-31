@@ -1,17 +1,17 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { TokenCont } from "../LoginContext/TokenContext";
-
+import toast, { Toaster } from "react-hot-toast";
 export const AccountCont = createContext();
 const APIKEY = process.env.REACT_APP_API_KEY;
 
 export default function AccountContextProvider({ children }) {
   const { LocalStorage } = useContext(TokenCont);
-
+  const [IsError, SetIsError] = useState(false);
   const [Session_id, SETSession_id] = useState(
     localStorage.getItem("session_id")
   );
-    const [LoadingAnimation,SetLoadingAnimation] = useState(null);
+  const [LoadingAnimation, SetLoadingAnimation] = useState(null);
   async function POSTAccountDetails({ username, password }) {
     try {
       const response = await axios.post(
@@ -22,7 +22,7 @@ export default function AccountContextProvider({ children }) {
           request_token: LocalStorage,
         }
       );
-      SetLoadingAnimation(true)
+      SetLoadingAnimation(true);
       console.log(response);
 
       if (response?.data?.success === true) {
@@ -31,7 +31,16 @@ export default function AccountContextProvider({ children }) {
 
       return response;
     } catch (error) {
-      console.error("Login failed:", error);
+      //SetIsError(true);
+      toast("Incorrect username or password", {
+        icon: "🔥",
+        style: {
+          borderRadius: "20px",
+          background: "#333",
+          color: "#fff",
+        },
+      });
+      console.error(error);
     }
   }
 
@@ -62,7 +71,9 @@ export default function AccountContextProvider({ children }) {
 
       localStorage.setItem("account_id", userResponse.data.id);
       console.log("USER ID FROM CONTAXT : " + userResponse.data.id);
-      SetLoadingAnimation(false);
+      setTimeout(() => {
+        SetLoadingAnimation(false);
+      }, 1000);
       return userResponse;
     } catch (error) {
       console.error("User ID retrieval failed:", error);
@@ -78,7 +89,15 @@ export default function AccountContextProvider({ children }) {
 
   return (
     <AccountCont.Provider
-      value={{ POSTAccountDetails, Session_id, SETSession_id,LoadingAnimation,SetLoadingAnimation }}
+      value={{
+        POSTAccountDetails,
+        Session_id,
+        SETSession_id,
+        LoadingAnimation,
+        SetLoadingAnimation,
+        IsError,
+        SetIsError,
+      }}
     >
       {children}
     </AccountCont.Provider>
