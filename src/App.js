@@ -20,6 +20,8 @@ import CoomingSoonQueryApiContextProvider from "./ReactQuery/CoomingSoonQueryApi
 import FavouritesContextProvider from "./Context/FavouritesContext/FavouritesContext";
 import TokenContextProvider from "./Context/LoginContext/TokenContext";
 import AccountContextProvider from "./Context/AccountContext/AccountContext";
+import SimilerMoviesContext from "./Context/Similer/SimilerMoviesContext";
+import SimilerMovies from "./Components/Similer/SimilerMovies";
 
 export default function App() {
   let Query = new QueryClient();
@@ -32,7 +34,6 @@ export default function App() {
           index: true,
           element: <Home />,
         },
-
         { path: "BoxOffice", element: <BoxOffice /> },
         { path: "MovieDetails/:ID", element: <BoxOfficeDetails /> },
         { path: "TopSeries", element: <TopSeries /> },
@@ -48,24 +49,24 @@ export default function App() {
 
   return (
     <main>
-    <Provider store={myStore}>
-      <TokenContextProvider>
-        <AccountContextProvider>
-          <FavouritesContextProvider>
-            <QueryClientProvider client={Query}>
-              
-                <TVDiscuveryContextProvider>
-                  <MovieDiscuveryContext>
-                    <CoomingSoonQueryApiContextProvider>
-                      <RouterProvider router={routers}></RouterProvider>
-                    </CoomingSoonQueryApiContextProvider>
-                  </MovieDiscuveryContext>
-                </TVDiscuveryContextProvider>
-              
-            </QueryClientProvider>
-          </FavouritesContextProvider>
-        </AccountContextProvider>
-      </TokenContextProvider>
+      <Provider store={myStore}>
+        <TokenContextProvider>
+          <AccountContextProvider>
+            <FavouritesContextProvider>
+              <QueryClientProvider client={Query}>
+                <SimilerMoviesContext>
+                  <TVDiscuveryContextProvider>
+                    <MovieDiscuveryContext>
+                      <CoomingSoonQueryApiContextProvider>
+                        <RouterProvider router={routers}></RouterProvider>
+                      </CoomingSoonQueryApiContextProvider>
+                    </MovieDiscuveryContext>
+                  </TVDiscuveryContextProvider>
+                </SimilerMoviesContext>
+              </QueryClientProvider>
+            </FavouritesContextProvider>
+          </AccountContextProvider>
+        </TokenContextProvider>
       </Provider>
     </main>
   );

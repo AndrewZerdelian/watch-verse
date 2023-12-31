@@ -101,7 +101,7 @@ export default function TopSeriesDetails() {
           </div>
         </div>
       ) : (
-        <div className="vh-100 ">
+        <div>
           <Toaster position="top-center" reverseOrder={false} />
           <img
             className={` ${Styling.Background} `}
