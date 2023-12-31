@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,8 @@ import Styling from "./TopSeriesDetails.module.css";
 import axios from "axios";
 import YouTube from "react-youtube";
 import { AddToFavouritesPostAPI } from "../../../Redux/AddToFavourites";
+import toast, { Toaster } from "react-hot-toast";
+import { AccountCont } from "../../../Context/AccountContext/AccountContext";
 
 export default function TopSeriesDetails() {
   const ImagesBasicPath = "https://image.tmdb.org/t/p/original/";
@@ -57,14 +59,34 @@ export default function TopSeriesDetails() {
   };
 
   /////////////////////////ADD Series TO FAVOURITES //////////////////////////
+  const { Session_id } = useContext(AccountCont);
 
-  async function AddSeriestoFavourties(media_id, media_type,favorite) {
+  async function AddSeriestoFavourties(media_id, media_type, favorite) {
     try {
-      const response = await Dispatch(
-        AddToFavouritesPostAPI({ media_id, media_type,favorite })
-      );
-      console.log(response);
-      return response;
+      if (Session_id) {
+        const response = await Dispatch(
+          AddToFavouritesPostAPI({ media_id, media_type, favorite })
+        );
+        console.log(response);
+        if (
+          response?.payload?.status_message ===
+          "The item/record was updated successfully."
+        ) {
+          toast.error("TV Show already in your favourites", {
+            style: { background: "#333", color: "#fff" },
+          });
+        }
+        if (response?.payload?.status_message === "Success.") {
+          toast.success("added to your favourites successfully", {
+            style: { background: "#333", color: "#fff" },
+          });
+        }
+        return response;
+      } else {
+        toast.error("Make sure to login", {
+          style: { background: "#333", color: "#fff" },
+        });
+      }
     } catch (error) {
       console.error("Error adding movie to favourites:", error);
     }
@@ -80,6 +102,7 @@ export default function TopSeriesDetails() {
         </div>
       ) : (
         <div className="vh-100 ">
+          <Toaster position="top-center" reverseOrder={false} />
           <img
             className={` ${Styling.Background} `}
             src={ImagesBasicPath + APIDATA.backdrop_path}
@@ -121,7 +144,7 @@ export default function TopSeriesDetails() {
               </div>
               <div className={`${Styling.Important}`}>
                 <button
-                  onClick={() => AddSeriestoFavourties(APIDATA.id, "tv",true)}
+                  onClick={() => AddSeriestoFavourties(APIDATA.id, "tv", true)}
                   className="btn btn-danger me-5"
                 >
                   add to Favourites

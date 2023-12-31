@@ -30,6 +30,21 @@ export default function MovieDetails() {
           AddToFavouritesPostAPI({ media_id, media_type, favorite })
         );
         console.log(response);
+        console.log(response?.payload?.status_message);
+        if (
+          response?.payload?.status_message ===
+          "The item/record was updated successfully."
+        ) {
+          toast.error("Movie already in your favourites", {
+            style: { background: "#333", color: "#fff" },
+          });
+        }
+        if (response?.payload?.status_message === "Success.") {
+          toast.success("added to your favourites successfully", {
+            style: { background: "#333", color: "#fff" },
+          });
+        }
+
         return response;
       } else {
         toast.error("Make sure to login", {
