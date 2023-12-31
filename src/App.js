@@ -21,7 +21,7 @@ import FavouritesContextProvider from "./Context/FavouritesContext/FavouritesCon
 import TokenContextProvider from "./Context/LoginContext/TokenContext";
 import AccountContextProvider from "./Context/AccountContext/AccountContext";
 import SimilerMoviesContext from "./Context/Similer/SimilerMoviesContext";
-import SimilerMovies from "./Components/Similer/SimilerMovies";
+import SimilerSeriesContext from "./Context/Similer/SimilerSeriesContext";
 
 export default function App() {
   let Query = new QueryClient();
@@ -55,13 +55,15 @@ export default function App() {
             <FavouritesContextProvider>
               <QueryClientProvider client={Query}>
                 <SimilerMoviesContext>
-                  <TVDiscuveryContextProvider>
-                    <MovieDiscuveryContext>
-                      <CoomingSoonQueryApiContextProvider>
-                        <RouterProvider router={routers}></RouterProvider>
-                      </CoomingSoonQueryApiContextProvider>
-                    </MovieDiscuveryContext>
-                  </TVDiscuveryContextProvider>
+                  <SimilerSeriesContext>
+                    <TVDiscuveryContextProvider>
+                      <MovieDiscuveryContext>
+                        <CoomingSoonQueryApiContextProvider>
+                          <RouterProvider router={routers}></RouterProvider>
+                        </CoomingSoonQueryApiContextProvider>
+                      </MovieDiscuveryContext>
+                    </TVDiscuveryContextProvider>
+                  </SimilerSeriesContext>
                 </SimilerMoviesContext>
               </QueryClientProvider>
             </FavouritesContextProvider>

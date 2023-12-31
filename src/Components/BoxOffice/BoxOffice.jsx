@@ -98,14 +98,6 @@ export default function BoxOffice() {
               )}
               <li className="page-item">
                 <button
-                  onClick={LastPage}
-                  className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
-                >
-                  {allData.total_pages}
-                </button>
-              </li>
-              <li className="page-item">
-                <button
                   onClick={Next}
                   className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
                   aria-label="Next"
@@ -185,15 +177,6 @@ export default function BoxOffice() {
                 {allData.page}
               </button>
             )}
-            <li className="page-item">
-              <button
-                onClick={LastPage}
-                className="page-link bg-black text-danger border-dark focus-ring focus-ring-danger"
-              >
-                {allData.total_pages}
-              </button>
-            </li>
-
             <li className="page-item">
               <button
                 onClick={Next}
