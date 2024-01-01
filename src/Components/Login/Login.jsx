@@ -110,13 +110,13 @@ export default function Login() {
                 </div>
                 <div className="text-white">
                   <p>
-                    Note: Due to TMDB policies and API, account creation via
-                    this website is not possible. Please create an account using
-                    the provided hyperlink or use the guest credentials for
-                    testing.
+                    <span className="text-success fw-bolder">Note:</span> Due to
+                    TMDB policies and API, account creation via this website is
+                    not possible. Please create an account using the provided
+                    hyperlink or use the guest credentials for testing below.
                   </p>
-                  <p>Username: Guest123</p>
-                  <p>password: Guest123</p>
+                  <p>Username: Guest12345</p>
+                  <p>password: Guest12345</p>
                 </div>
               </form>
             </>
