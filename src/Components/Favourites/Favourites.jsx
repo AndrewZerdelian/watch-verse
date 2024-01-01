@@ -70,7 +70,7 @@ export default function Favourites() {
           <h1 className="text-danger text-center p-5 ">Favourites</h1>
           <div className="d-flex justify-content-center mb-3">
             <button
-              className={`btn btn-outline-danger ${showMovies ? "active" : ""}`}
+              className={`btn btn-outline-danger`}
               onClick={() => setShowMovies(!showMovies)}
             >
               {showMovies ? "Movies" : "TV Shows"}
