@@ -145,7 +145,7 @@ export default function Favourites() {
                   {APIDATA?.results?.map((movie) => (
                     <div
                       key={movie.id}
-                      className={`col-3 text-center py-5 ${Style.Scalling}`}
+                      className={`col-md-4 col-lg-3 col-sm-6 text-center py-5 ${Style.Scalling}`}
                     >
                       <Link
                         className={`${Style.Link}`}
@@ -246,7 +246,7 @@ export default function Favourites() {
               <div className="row">
                 {SeriesAPIDATA?.results?.map((Series) => (
                   <div
-                    className={`col-3 text-center py-5 ${Style.Scalling}`}
+                    className={`col-md-4 col-lg-3 col-sm-6 text-center py-5 ${Style.Scalling}`}
                     key={Series.id}
                   >
                     <Link

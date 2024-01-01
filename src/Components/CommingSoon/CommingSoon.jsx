@@ -122,7 +122,10 @@ export default function CommingSoon() {
             </div>
             <div className="row">
               {data?.results.map((Series) => (
-                <div className={`col-3 text-center py-5`} key={Series.id}>
+                <div
+                  className={`col-md-4 col-lg-3 col-sm-6 text-center py-5`}
+                  key={Series.id}
+                >
                   <img
                     src={ImagesBasicPath + Series.poster_path}
                     alt="Series"
@@ -137,7 +140,9 @@ export default function CommingSoon() {
                     <div className="text-white">{Series.release_date}</div>
                   </div>
                   <Link to={`/MovieDetails/${Series.id}`}>
-                    <button className="btn btn-outline-danger">More Info</button>
+                    <button className="btn btn-outline-danger">
+                      More Info
+                    </button>
                   </Link>
                 </div>
               ))}

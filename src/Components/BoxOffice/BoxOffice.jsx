@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BoxOfficeAPIFunction } from "../../Redux/BoxOfficeSlice";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { Link, } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Style from "../BoxOffice/BoxOffice.module.css";
 
 export default function BoxOffice() {
@@ -111,12 +111,9 @@ export default function BoxOffice() {
         {allData?.results?.map((movie) => (
           <div
             key={movie.id}
-            className={`col-3 text-center py-5 pos ${Style.Scalling}`}
+            className={`col-md-4 col-lg-3 col-sm-6 text-center py-5 pos ${Style.Scalling}`}
           >
-            <Link
-              className={`${Style.Link}`}
-              to={`/MovieDetails/${movie.id}`}
-            >
+            <Link className={`${Style.Link}`} to={`/MovieDetails/${movie.id}`}>
               <img
                 src={ImagesBasicPath + movie.poster_path}
                 alt="Movies"

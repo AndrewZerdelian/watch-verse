@@ -65,6 +65,7 @@ export default function MovieDiscuvery() {
                     objectFit: "cover",
                     objectPosition: "center top",
                     filter: "brightness(60%)",
+                    margin: "auto",
                   }}
                 />
                 <div className="carousel-caption d-none d-md-block">

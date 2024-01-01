@@ -43,7 +43,6 @@ export default function TVDiscuvery() {
                   <img
                     src={ImagesBasicPath + item.backdrop_path}
                     alt="background"
-                    className={`w-100 `}
                   />
                 </div>
               </div>

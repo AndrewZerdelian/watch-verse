@@ -38,19 +38,19 @@ export default function MovieDetails() {
           "The item/record was updated successfully."
         ) {
           toast.error("Movie already in your favourites", {
-            style: { background: "#333", color: "#fff",borderRadius: "20px"},
+            style: { background: "#333", color: "#fff", borderRadius: "20px" },
           });
         }
         if (response?.payload?.status_message === "Success.") {
           toast.success("added to your favourites successfully", {
-            style: { background: "#333", color: "#fff",borderRadius: "20px"},
+            style: { background: "#333", color: "#fff", borderRadius: "20px" },
           });
         }
 
         return response;
       } else {
         toast.error("Make sure to login", {
-          style: { background: "#333", color: "#fff" ,borderRadius: "20px"},
+          style: { background: "#333", color: "#fff", borderRadius: "20px" },
         });
       }
     } catch (error) {
@@ -117,24 +117,26 @@ export default function MovieDetails() {
         <div>
           <Toaster position="top-center" reverseOrder={false} />
           <img
-            className={` ${Styling.Background} `}
+            className={` ${Styling.Background}  d-none d-lg-block`}
             src={ImagesBasicPath + APIDATA.backdrop_path}
             alt={APIDATA.title}
           />
-          <div className="container-fluid vh-100 row justify-content-center align-items-center">
-            <div className="col-3 text-center">
+          <div className="container-fluid min-vh-100 row justify-content-center align-items-center">
+            <div className="col-lg-3 col-md-6 text-center">
               <img
                 src={ImagesBasicPath + APIDATA.poster_path}
-                className="w-100  rounded-1 shadow-lg"
+                className="w-100  rounded-1 shadow-lg "
                 alt={APIDATA.title}
               ></img>
               <h1 className="text-danger fw-bolder">{APIDATA.title}</h1>
               <p className="h4">{APIDATA.tagline}</p>
             </div>
-            <div className="col-6 pt-5">
-              <div className="h5 pb-5">
+            <div className="col-md-6 pt-5">
+              <div className="h5 pb-5 text-center text-sm-start">
                 Plot summary:<br></br>
-                <div className="pt-3">{APIDATA.overview}</div>
+                <div className="pt-3 text-center text-sm-start">
+                  {APIDATA.overview}
+                </div>
               </div>
               <div className="h5">
                 IMDB {APIDATA.vote_average.toFixed(1)} / 10
@@ -151,7 +153,9 @@ export default function MovieDetails() {
                   </div>
                 ))}
               </div>
-              <div className={`${Styling.Important}`}>
+              <div
+                className={`${Styling.Important} d-sm-start-flex justify-content-sm-center`}
+              >
                 <button
                   onClick={() =>
                     AddMovietoFavourties(APIDATA.id, "movie", true)

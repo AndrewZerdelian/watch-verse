@@ -46,7 +46,7 @@ export default function SimilerSeries() {
     SetCurrentPage(3);
   }
   return (
-    <div className="container-fluid">
+    <div className="container-fluid pt-5 !important">
       <h1 className="text-danger text-center">Similer TV Shows</h1>
       <div className="row">
         <div className="d-flex justify-content-around align-items-center pt-5 ">
@@ -90,7 +90,7 @@ export default function SimilerSeries() {
                   {MappingOverSimiler.page}
                 </button>
               )}
-              
+
               <li className="page-item">
                 <button
                   onClick={Next}
@@ -106,7 +106,7 @@ export default function SimilerSeries() {
         {MappingOverSimiler?.results?.map((Series) => (
           <div
             key={Series.id}
-            className={`col-3 text-center py-5 pos ${Style.Scalling}`}
+            className={`col-md-4 col-lg-3 text-center py-5 pos ${Style.Scalling}`}
           >
             <Link
               className={`${Style.Link}`}
