@@ -110,7 +110,7 @@ export default function SimilerMovies() {
         {MappingOverSimiler?.results?.map((movie) => (
           <div
             key={movie.id}
-            className={`col-3 text-center py-5 pos ${Style.Scalling}`}
+            className={`col-md-4 col-lg-3 text-center py-5 pos ${Style.Scalling}`}
           >
             <Link className={`${Style.Link}`} to={`/MovieDetails/${movie.id}`}>
               <img

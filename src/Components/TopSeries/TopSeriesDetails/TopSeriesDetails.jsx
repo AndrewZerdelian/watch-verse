@@ -105,24 +105,26 @@ export default function TopSeriesDetails() {
         <div>
           <Toaster position="top-center" reverseOrder={false} />
           <img
-            className={` ${Styling.Background} `}
+            className={` ${Styling.Background} d-none d-lg-block `}
             src={ImagesBasicPath + APIDATA.backdrop_path}
             alt={APIDATA.title}
           />
-          <div className="container-fluid vh-100 row justify-content-center align-items-center">
-            <div className="col-3 text-center">
+          <div className="container-fluid row justify-content-center align-items-center min-vh-100">
+            <div className=" col-lg-3 col-md-6 text-center">
               <img
                 src={ImagesBasicPath + APIDATA.poster_path}
-                className="w-100  rounded-1 shadow-lg"
+                className="w-100 pt-4  rounded-1 shadow-lg"
                 alt={APIDATA.title}
               ></img>
               <h1 className="text-danger fw-bolder">{APIDATA.name}</h1>
               <p className="h4">{APIDATA.tagline}</p>
             </div>
-            <div className="col-6 pt-5">
-              <div className="h5 pb-5">
+            <div className="col-md-6 pt-5">
+              <div className="h5 pb-5 text-center text-sm-start">
                 Plot summary:<br></br>
-                <div className="pt-3">{APIDATA.overview}</div>
+                <div className="pt-3 text-center text-sm-start">
+                  {APIDATA.overview}
+                </div>
               </div>
               <div className="h5">
                 IMDB {APIDATA.vote_average.toFixed(1)}
@@ -143,16 +145,18 @@ export default function TopSeriesDetails() {
                   </div>
                 ))}
               </div>
-              <div className={`${Styling.Important}`}>
+              <div
+                className={`${Styling.Important} d-sm-start-flex justify-content-sm-center `}
+              >
                 <button
                   onClick={() => AddSeriestoFavourties(APIDATA.id, "tv", true)}
-                  className="btn btn-danger me-5"
+                  className="btn btn-outline-danger me-5"
                 >
                   add to Favourites
                 </button>
                 <button
                   onClick={SeriesTrailer}
-                  className="btn btn-danger me-5 "
+                  className="btn btn-outline-danger me-5 "
                 >
                   Watch Trailer
                 </button>

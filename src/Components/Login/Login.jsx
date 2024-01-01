@@ -3,10 +3,9 @@ import { AccountCont } from "../../Context/AccountContext/AccountContext";
 import { useFormik } from "formik";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 //import Animation from "../../Assets/Animation - 1703943436684 .json";
-import  { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 export default function Login() {
-  const { POSTAccountDetails, LoadingAnimation, } =
-    useContext(AccountCont);
+  const { POSTAccountDetails, LoadingAnimation } = useContext(AccountCont);
 
   const Form = useFormik({
     initialValues: {
@@ -92,7 +91,7 @@ export default function Login() {
                   />
                 </div>
                 <div className="d-flex justify-content-between">
-                  <button type="submit" className="btn btn-danger">
+                  <button type="submit" className="btn btn-outline-danger">
                     Submit
                   </button>
                   <a
@@ -101,10 +100,9 @@ export default function Login() {
                   >
                     Create Account
                   </a>
-
                   <button
                     type="button"
-                    className="btn btn-secondary "
+                    className="btn btn-outline-secondary "
                     data-bs-dismiss="modal"
                   >
                     Close

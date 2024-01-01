@@ -56,7 +56,7 @@ export default function Navbar() {
             className="collapse navbar-collapse "
             id="navbarSupportedContent"
           >
-            <ul className="navbar-nav  nav-underline ms-auto mb-2 mb-lg-0 ">
+            <ul className="navbar-nav  nav-underline ms-lg-auto text-center mb-2 mb-lg-0 ">
               <li className="nav-item">
                 <NavLink
                   className={({ isActive }) =>
@@ -110,24 +110,32 @@ export default function Navbar() {
 
               {Session_id ? (
                 <li className="nav-item">
-                  <button
-                    className={"nav-link text-danger fw-bold"}
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "nav-link fw-bold text-danger "
+                        : "nav-link text-danger fw-bold"
+                    }
                     onClick={Logout}
                   >
                     Logout
-                  </button>
+                  </NavLink>
                   <Login />
                 </li>
               ) : (
                 <li className="nav-item">
-                  <button
-                    className={"nav-link text-danger fw-bold"}
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive
+                        ? "nav-link fw-bold text-danger "
+                        : "nav-link text-danger fw-bold"
+                    }
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     onClick={GetToken}
                   >
                     Login
-                  </button>
+                  </NavLink>
                   <Login />
                 </li>
               )}

@@ -64,7 +64,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="p-5 container">
+    <div className=" py-5 container-fluid">
       <form className="d-flex container" role="search">
         <input
           id="search"
@@ -141,14 +141,14 @@ export default function SearchBar() {
           </nav>
         </div>
       )}
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           {Loading?.results?.map(
             (search) =>
               search.poster_path && (
                 <div
                   key={search.id}
-                  className={`col-3 text-center py-5 pos ${Style.Scalling}`}
+                  className={`col-md-4 col-lg-3 col-sm-6 text-center py-5 pos ${Style.Scalling}`}
                 >
                   {search.media_type === "movie" ? (
                     <Link
@@ -158,7 +158,7 @@ export default function SearchBar() {
                       <img
                         src={ImagesBasicPath + search.poster_path}
                         alt="Movies"
-                        className="w-100"
+                        className="w-75"
                       />
                       <h3 className="text-white">
                         {search.title}

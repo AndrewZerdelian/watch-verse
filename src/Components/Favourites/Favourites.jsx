@@ -70,7 +70,7 @@ export default function Favourites() {
           <h1 className="text-danger text-center p-5 ">Favourites</h1>
           <div className="d-flex justify-content-center mb-3">
             <button
-              className={`btn btn-outline-danger ${showMovies ? "active" : ""}`}
+              className={`btn btn-outline-danger`}
               onClick={() => setShowMovies(!showMovies)}
             >
               {showMovies ? "Movies" : "TV Shows"}
@@ -145,7 +145,7 @@ export default function Favourites() {
                   {APIDATA?.results?.map((movie) => (
                     <div
                       key={movie.id}
-                      className={`col-3 text-center py-5 ${Style.Scalling}`}
+                      className={`col-md-4 col-lg-3 col-sm-6 text-center py-5 ${Style.Scalling}`}
                     >
                       <Link
                         className={`${Style.Link}`}
@@ -246,7 +246,7 @@ export default function Favourites() {
               <div className="row">
                 {SeriesAPIDATA?.results?.map((Series) => (
                   <div
-                    className={`col-3 text-center py-5 ${Style.Scalling}`}
+                    className={`col-md-4 col-lg-3 col-sm-6 text-center py-5 ${Style.Scalling}`}
                     key={Series.id}
                   >
                     <Link

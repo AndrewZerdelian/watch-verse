@@ -115,7 +115,7 @@ export default function TopSeries() {
           <div className="row">
             {APIDATA?.results.map((Series) => (
               <div
-                className={`col-3 text-center py-5 ${Style.Scalling}`}
+                className={`col-md-4 col-lg-3 col-sm-6 text-center py-5 ${Style.Scalling}`}
                 key={Series.id}
               >
                 <Link
@@ -137,7 +137,6 @@ export default function TopSeries() {
                     </div>
                     <div className="text-white">{Series.first_air_date}</div>
                   </div>
-                  
                 </Link>
               </div>
             ))}
