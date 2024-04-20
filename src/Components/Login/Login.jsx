@@ -94,12 +94,6 @@ export default function Login() {
                   <button type="submit" className="btn btn-outline-danger">
                     Submit
                   </button>
-                  <a
-                    href="https://www.themoviedb.org/signup"
-                    className="btn btn-dark text-primary border-primary"
-                  >
-                    Create Account
-                  </a>
                   <button
                     type="button"
                     className="btn btn-outline-secondary "
@@ -108,7 +102,7 @@ export default function Login() {
                     Close
                   </button>
                 </div>
-                <div className="text-white">
+                <div className="text-white pt-5">
                   <p>
                     <span className="text-success fw-bolder">Note:</span> Due to
                     TMDB policies and API, account creation via this website is
@@ -118,6 +112,12 @@ export default function Login() {
                   <p>Username: Guest12345</p>
                   <p>password: Guest12345</p>
                 </div>
+                <a
+                  href="https://www.themoviedb.org/signup"
+                  className="text-primary border-primary align-self-end"
+                >
+                  Create Account
+                </a>
               </form>
             </>
           )}

@@ -47,7 +47,7 @@ export default function SimilerSeries() {
   }
   return (
     <div className="container-fluid pt-5 !important">
-      <h1 className="text-danger text-center">Similer TV Shows</h1>
+      <h1 className="text-danger text-center pt-5">Similer TV Shows</h1>
       <div className="row">
         <div className="d-flex justify-content-around align-items-center pt-5 ">
           <nav aria-label="Page navigation example ">
