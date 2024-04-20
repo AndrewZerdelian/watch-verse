@@ -51,8 +51,8 @@ export default function SimilerMovies() {
   }
 
   return (
-    <div className="container-fluid">
-      <h1 className="text-danger text-center">Similer Movies</h1>
+    <div className="container-fluid pt-5">
+      <h1 className="text-danger text-center pt-5">Similer Movies</h1>
       <div className="row">
         <div className="d-flex justify-content-around align-items-center pt-5 ">
           <nav aria-label="Page navigation example ">
